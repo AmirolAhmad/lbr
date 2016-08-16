@@ -3,7 +3,7 @@
 
   <div class="sidebar-header">
     <div class="sidebar-title">
-      Member Menu
+      Menu Navigation
     </div>
     <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
       <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -16,9 +16,18 @@
         <ul class="nav nav-main">
           <li>
             <%= link_to dashboard_path do %>
-              <i class="fa fa-home" aria-hidden="true"></i>
-              <span>Member Home</span>
+              <i class="fa fa-home"></i> <span>Member Home</span>
             <% end %>
+          </li>
+          <li class="nav-parent">
+            <a><i class="fa fa-group"></i> <span>My Team</span></a>
+            <ul class="nav nav-children">
+              <li>
+                <%= link_to new_team_path do %>
+                  <i class="fa fa-group"></i> <span>Create Team</span>
+                <% end %>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>

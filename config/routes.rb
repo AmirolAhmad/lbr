@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   end
 
   get "/dashboard" => 'dashboards#index'
+  resource :team
 end

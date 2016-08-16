@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_one :team, dependent: :destroy
+  # accepts_nested_attributes_for :team, allow_destroy: true
+
   attr_accessor :login
   validate :validate_username
 
