@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'config'
 gem 'cancancan', '~> 1.10'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'byebug'

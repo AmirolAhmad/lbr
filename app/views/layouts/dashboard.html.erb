@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="fixed header-dark sidebar-left-sm">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,8 +15,14 @@
 <body>
   <div class="container-fluid">
     <%= render 'alert' %>
-    <%= render 'header' %>
-    <%= yield %>
+    <section class="body">
+      <%= render 'header' %>
+      <div class="inner-wrapper">
+        <%= render 'left_sidebar' %>
+        <%= yield %>
+      </div>
+      <%= render 'right_sidebar' %>
+    </section>
   </div>
 </body>
 </html>
