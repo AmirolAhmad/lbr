@@ -1,6 +1,7 @@
 //= require modernizr/modernizr
 //= require jquery
 //= require jquery.turbolinks
+//= require cocoon
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery-browser-mobile/jquery.browser.mobile

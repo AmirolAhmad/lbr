@@ -17,6 +17,11 @@ gem 'devise'
 gem 'config'
 gem 'cancancan', '~> 1.10'
 gem 'jquery-turbolinks'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fastimage'
+gem 'carrierwave-imageoptimizer'
+gem 'cocoon'
 
 group :development, :test do
   gem 'byebug'

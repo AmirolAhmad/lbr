@@ -1,9 +1,14 @@
 class Team < ActiveRecord::Base
   enum status: [:pending, :registered, :rejected]
   after_create :random_team_ref_id
+  mount_uploader :team_logo, TeamLogoUploader
+  mount_uploader :team_image, TeamLogoUploader
 
   belongs_to :user
   belongs_to :state
+  has_many :team_officials, as: :teamable, dependent: :destroy
+
+  accepts_nested_attributes_for :team_officials, allow_destroy: true
 
   default_scope -> { order('teams.created_at DESC') }
   scope :pending, -> { where ('status = 0')}

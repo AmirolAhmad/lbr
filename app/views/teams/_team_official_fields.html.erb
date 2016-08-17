@@ -1,0 +1,13 @@
+<div class="nested-fields">
+  <div class="fields">
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <%= f.text_field :name, :class => "form-control", placeholder: "Nama Pegawai" %>
+    </div>
+    <div class="col-md-5">
+      <%= f.text_field :position, :class => "form-control", placeholder: "Jawatan Pegawai" %>
+      <%= link_to_remove_association 'buang', f %>
+    </div>
+
+  </div>
+</div>

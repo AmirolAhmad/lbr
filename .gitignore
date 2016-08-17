@@ -13,6 +13,7 @@
 /tmp
 
 .DS_Store
+public/uploads/team/*
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml

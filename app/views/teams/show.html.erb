@@ -9,7 +9,9 @@
           <% end %>
         </li>
         <li>
-          <span>My Team</span>
+          <%= link_to team_path do %>
+            <span>My Team</span>
+          <% end %>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -19,9 +21,28 @@
   </header>
   <div class="row">
     <div class="col-md-12">
+      <section class="panel panel-horizontal">
+        <header class="panel-heading bg-white" style="width:200px;">
+          <% if @team.try(:team_logo?) %>
+            <%= image_tag(@team.team_logo_url(:low_res), class: "img-responsive img-circle", style: "height: 140px") %>
+          <% else %>
+            <%= image_tag('team_logo_low_res.png', class: "img-responsive") %>
+          <% end %>
+        </header>
+        <div class="panel-body p-lg">
+        <h1 class="text-weight-semibold mt-sm"><%= @team.team_name %></h1>
+        </div>
+      </section>
+      <section class="panel panel-horizontal">
+
+      </section>
+    </div>
+
+
+    <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">My Team</h2>
+          <h2 class="panel-title">Keterangan Pasukan</h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
@@ -35,18 +56,46 @@
                 <td><%= @team.team_name %></td>
               </tr>
               <tr>
-                <td class="col-md-2"><strong>Pasukan ID</strong></td>
+                <td class="col-md-2"><strong>ID Pasukan</strong></td>
                 <td><%= @team.team_ref_id %></td>
               </tr>
               <tr>
-                <td class="col-md-2"><strong>Status</strong></td>
+                <td class="col-md-2"><strong>Status Penyertaan</strong></td>
                 <td>
                   <% if @team.pending? %>
-                    Pending
+                    <span class="label label-warning">Pending</span>
                   <% elsif @team.registered? %>
-                    Registered
+                    <span class="label label-primary">Registered</span>
                   <% else %>
-                    Rejected
+                    <span class="label label-danger">Rejected</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-md-2"><strong>Alamat Pasukan</strong></td>
+                <td><%= @team.address %></td>
+              </tr>
+              <tr>
+                <td class="col-md-2"><strong>Negeri</strong></td>
+                <td><%= @team.state.name %></td>
+              </tr>
+              <tr>
+                <td class="col-md-2"><strong>Senarai Pegawai Pasukan</strong></td>
+                <td>
+                  <% if @team.team_officials.any? %>
+                    <% @team.team_officials.each_with_index do |t,index| %>
+                    <%= index+1 %>. <strong><%= t.position %>: </strong> <%= t.name %><br/>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-md-2"><strong>Gambar Pasukan</strong></td>
+                <td>
+                  <% if @team.try(:team_image?) %>
+                    <%= image_tag(@team.team_image_url(:low_res), class: "img-responsive") %>
+                  <% else %>
+                    <%= image_tag('team_logo_low_res.png', class: "img-responsive") %>
                   <% end %>
                 </td>
               </tr>
