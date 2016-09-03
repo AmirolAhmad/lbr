@@ -16,5 +16,11 @@ Rails.application.routes.draw do
   end
 
   get "/dashboard" => 'dashboards#index'
-  resource :team
+  resource :team, only: [:new, :create, :show] do
+    resources :team_officials
+  end
+  resource :team_config, only: [:show, :new, :create]
+  resources :state_managers
+  resources :team_managers
+  resource :profile, only: [:edit, :update]
 end

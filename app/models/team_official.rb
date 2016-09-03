@@ -1,3 +1,3 @@
 class TeamOfficial < ActiveRecord::Base
-  belongs_to :teamable, polymorphic: true
+  belongs_to :teamoffable, polymorphic: true
 end

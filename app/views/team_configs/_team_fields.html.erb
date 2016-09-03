@@ -1,0 +1,13 @@
+<div class="nested-fields">
+  <div class="fields">
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <%= f.text_field :team_name, :class => "form-control", placeholder: "Nama Pasukan" %>
+    </div>
+    <div class="col-md-5">
+      <%= f.text_field :admin_officer_id, :class => "form-control", placeholder: "Daftar Pegawai" %>
+      <%= link_to_remove_association 'buang', f %>
+    </div>
+
+  </div>
+</div>

@@ -1,10 +1,17 @@
 class User < ActiveRecord::Base
-  enum role: [:user, :lbr_admin, :state_manager]
+  enum role: [:user, :lbr_admin, :state_manager, :team_manager]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :team, dependent: :destroy
-  # accepts_nested_attributes_for :team, allow_destroy: true
+  # has_many :teams, class_name: "Team", foreign_key: "admin_officer_id"
+  # has_many :team_coordinators, class_name: "Team", foreign_key: "general_coordinator_id"
+  belongs_to :state
+  has_one :team_config, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile, update_only: true, allow_destroy: true
+
+  after_create :create_profile
 
   attr_accessor :login
   validate :validate_username

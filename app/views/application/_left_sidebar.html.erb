@@ -16,19 +16,81 @@
         <ul class="nav nav-main">
           <li>
             <%= link_to dashboard_path do %>
-              <i class="fa fa-home"></i> <span>Member Home</span>
+              <i class="fa fa-home"></i> <span>Muka Hadapan</span>
             <% end %>
           </li>
+          <% if current_user.lbr_admin? %>
           <li class="nav-parent">
-            <a><i class="fa fa-group"></i> <span>My Team</span></a>
+            <a><i class="fa fa-group"></i> <span>Daftar Pengurus Negeri</span></a>
             <ul class="nav nav-children">
               <li>
-                <%= link_to new_team_path do %>
-                  <i class="fa fa-group"></i> <span>Create Team</span>
+                <%= link_to state_managers_path do %>
+                  <i class="fa fa-group"></i> <span>Lihat Senarai Pengurus</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_state_manager_path do %>
+                  <i class="fa fa-group"></i> <span>Daftar Data Baru</span>
                 <% end %>
               </li>
             </ul>
           </li>
+          <% end %>
+          <% if current_user.state_manager? %>
+          <li class="nav-parent">
+            <a><i class="fa fa-group"></i> <span>Pendaftaran Pasukan</span></a>
+            <ul class="nav nav-children">
+              <% if !TeamConfig.exists?(:state_id => "#{current_user.state_id}") %>
+              <li>
+                <%= link_to new_team_config_path do %>
+                  <i class="fa fa-group"></i> <span>Tetapan Pendaftaran<br/>Pasukan</span>
+                <% end %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to team_config_path do %>
+                  <i class="fa fa-group"></i> <span>Lihat Pendaftaran<br/>Pasukan</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_team_manager_path do %>
+                  <i class="fa fa-group"></i> <span>Daftar Pegawai Tadbir</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to team_managers_path do %>
+                  <i class="fa fa-group"></i> <span>Lihat Senarai Pegawai<br/>Tadbir</span>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </li>
+          <% end %>
+          <% if current_user.team_manager? %>
+          <li class="nav-parent">
+            <a><i class="fa fa-group"></i> <span>Data Pasukan</span></a>
+            <ul class="nav nav-children">
+              <% if !Team.exists?(:team_name => "#{current_user.team_name}") %>
+              <li>
+                <%= link_to new_team_path do %>
+                  <i class="fa fa-group"></i> <span>Cipta Pasukan</span>
+                <% end %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to team_path do %>
+                  <i class="fa fa-group"></i> <span>Data Pasukan</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to team_team_officials_path do %>
+                  <i class="fa fa-group"></i> <span>Senarai Pegawai Pasukan</span>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </li>
+          <% end %>
         </ul>
       </nav>
     </div>

@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>My Team</h2>
+    <h2>Data Pasukan</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,14 +9,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to team_path do %>
-            <span>My Team</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_team_path do %>
-            <span>Create Team</span>
-          <% end %>
+          <span>Data Pasukan</span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -28,11 +21,11 @@
     <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">Create Team</h2>
+          <h2 class="panel-title">Data Pasukan</h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
-          <%= form_for @team, url: team_url, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
+          <%= form_for @team, url: team_path, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
             <%= render partial: 'form', locals: {f: f, post: @team} %>
           <% end %>
           <!-- Main Content End -->
@@ -41,3 +34,5 @@
     </div>
   </div>
 </section>
+
+<%= render partial: "alert_profile" %>

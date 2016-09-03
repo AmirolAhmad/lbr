@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Data Pasukan</h2>
+    <h2>Team Configurations</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Data Pasukan</span>
+          <span>Team Configurations</span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -21,17 +21,14 @@
     <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">Data Pasukan</h2>
+          <h2 class="panel-title">Team Configurations</h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
-          <%= @team.team_name %>
-          <!-- Main Content End -->
-        </div>
-        <div class="panel-footer">
-          <% if !TeamOfficial.exists?("teamoffable_id" => "#{current_user.team.id}") %>
-            <%= link_to "Daftar Pegawai Pasukan", new_team_team_official_path(teamoffable_id: @team.id, teamoffable_type: @team.class.to_s) %>
+          <%= form_for @team_config, url: team_config_path, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
+            <%= render partial: 'form', locals: {f: f, post: @team_config} %>
           <% end %>
+          <!-- Main Content End -->
         </div>
       </section>
     </div>

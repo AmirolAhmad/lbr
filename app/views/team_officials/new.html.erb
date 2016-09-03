@@ -1,0 +1,131 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Data Pegawai Pasukan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Data Pegawai Pasukan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Data Pegawai Pasukan</h2>
+        </header>
+        <div class="panel-body">
+          <%= form_tag team_team_officials_path do %>
+            <% @team_official.each_with_index do |to, index| %>
+              <%= fields_for 'team_officials[]', to do |f| %>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :name, "Nama Pegawai", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <%= f.text_field :name, :class => "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :position, "Posisi Pegawai", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <% if index == 0 %>
+                          <%= f.text_field :position, :class => "form-control", value: "General Koordinator", required: true, disabled: "disabled" %>
+                          <%= f.hidden_field :position, value: "General Koordinator" %>
+                        <% elsif index == 1 %>
+                        <%= f.text_field :position, :class => "form-control", value: "Pengurus", required: true, disabled: "disabled" %>
+                        <%= f.hidden_field :position, value: "Pengurus" %>
+                        <% elsif index == 2 %>
+                          <%= f.text_field :position, :class => "form-control", value: "Ketua Jurulatih", required: true, disabled: "disabled" %>
+                          <%= f.hidden_field :position, value: "Ketua Jurulatih" %>
+                        <% else %>
+                          <%= f.text_field :position, :class => "form-control" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :phone_number, "Nombor Telefon", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <%= f.text_field :phone_number, :class => "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :ic_number, "No Kad Pengenalan", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <%= f.text_field :ic_number, :class => "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :email_address, "Alamat Emel Pegawai", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <%= f.text_field :email_address, :class => "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+
+                <% if index != 0 && index != 1 %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :no_sijil, "No Sijil", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <%= f.text_field :no_sijil, :class => "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= f.label :salinan_sijil, "Salinan Sijil", class: "col-md-3 control-label" %>
+                      <div class="col-md-9">
+                        <%= f.text_field :salinan_sijil, :class => "form-control", required: true %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+
+                <hr>
+
+
+                <%= f.hidden_field :teamoffable_id, value: "#{params[:teamoffable_id]}" %>
+                <%= f.hidden_field :teamoffable_type, value: "#{params[:teamoffable_type]}" %>
+
+              <% end %>
+            <% end %>
+            <div class="actions">
+              <%= submit_tag "Hantar", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          <!-- Main Content End -->
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

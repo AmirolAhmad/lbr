@@ -1,0 +1,41 @@
+<% if current_user.profile.full_name.nil? %>
+<div id="modalHeaderColorPrimary" class="modal-block modal-header-color modal-block-primary mfp-hide">
+  <section class="panel">
+    <header class="panel-heading">
+      <h2 class="panel-title">Welcome to your dashboard, <%= current_user.email %></h2>
+    </header>
+    <div class="panel-body">
+      <div class="modal-wrapper">
+        <div class="modal-icon">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="modal-text">
+          <h5>Oh oh! Looks like you haven't setup your profile details yet</h5>
+          <p>Do you have some free time to do that?</p>
+        </div>
+      </div>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <%= link_to "Yes!", edit_profile_path, class: "btn btn-primary", data: { no_turbolink: true } %>
+          <button class="btn btn-default modal-dismiss">Not now</button>
+        </div>
+      </div>
+    </footer>
+  </section>
+</div>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $.magnificPopup.open({
+      items: {
+        src: '#modalHeaderColorPrimary'
+      },
+      type: 'inline',
+  		preloader: false,
+  		modal: true
+    });
+  });
+</script>
+<% end %>

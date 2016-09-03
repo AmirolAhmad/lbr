@@ -14,21 +14,40 @@
 <div class="form-group">
   <%= f.label :team_name, "Nama Pasukan", class: "col-md-2 control-label" %>
   <div class="col-md-10">
-    <%= f.text_field :team_name, :class => "form-control" %>
+    <%= f.text_field :team_name, value: "#{current_user.team_name}", :class => "form-control", disabled: "disabled" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :phone_number, "Nombor Telefon", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <%= f.text_field :phone_number, :class => "form-control", required: true %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :team_email_address, "Alamat Emel", class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+        <%= f.text_field :team_email_address, :class => "form-control", required: true %>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :address, "Alamat Pasukan", class: "col-md-2 control-label" %>
   <div class="col-md-10">
-    <%= f.text_area :address, :class => "form-control", rows: 5 %>
+    <%= f.text_area :address, :class => "form-control", rows: 5, required: true %>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :state_id, "Negeri", class: "col-md-2 control-label" %>
   <div class="col-md-3">
-    <%= f.collection_select :state_id, State.order(:name), :id, :name, {}, :class => "form-control", "data-plugin-selectTwo" => "data-plugin-selectTwo" %>
+    <%= f.text_field :state_id, value: "#{current_user.state.name}", :class => "form-control", disabled: "disabled" %>
   </div>
 </div>
 
@@ -69,22 +88,23 @@
   </div>
 </div>
 
+<h3 class="text-center">Pegawai Pasukan Utama</h3>
 <hr>
 
-<div class="text-center">
-  <h4><%= f.label :team_officials, "Pegawai Pasukan", class: "col-md-12" %></h4>
-  <br/>
-  <br/>
-</div>
-
-<div class="form-group">
-  <div class="col-md-12">
-    <%= f.fields_for :team_officials do |f| %>
-      <%= render partial: 'team_official_fields', locals: {f: f} %>
-    <% end %>
-    <div class="text-center"><%= link_to_add_association "Tambah Pegawai Pasukan", f, :team_officials, class: "btn btn-link" %></div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-1">1.</div>
+  <div class="col-md-4">
+    <strong><%= current_user.profile.full_name.nil? ? current_user.username : current_user.profile.full_name %></strong>
+  </div>
+  <div class="col-md-4">
+    Pegawai Tadbir
   </div>
 </div>
+
+<%= f.hidden_field :team_name, value: "#{current_user.team_name}" %>
+<%= f.hidden_field :admin_officer_id, value: "#{current_user.id}" %>
+<%= f.hidden_field :state_id, value: "#{current_user.state_id}" %>
 
 <hr>
 
@@ -92,7 +112,7 @@
   <label class="col-md-2 control-label"></label>
   <div class="col-md-10">
     <%= f.button :class => "btn btn-primary pull-right", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } do %>
-      <i class='fa fa-save'></i> Simpan & Berikutnya
+      <i class='fa fa-save'></i> Simpan
     <% end %>
     <%= link_to 'Batal', team_path, :class => "btn btn-link pull-right" %>
   </div>

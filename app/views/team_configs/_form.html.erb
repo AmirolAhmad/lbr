@@ -1,0 +1,35 @@
+<% if @team_config.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@team_config.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @team_config.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :state_id, "Negeri", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :state_id, value: "#{current_user.state.name}", :class => "form-control", disabled: "disabled" %>
+    <%= f.hidden_field :state_id, value: "#{current_user.state_id}" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :count, "Jumlah Keseluruhan Pasukan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :count, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button "Save", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
+    <%= link_to 'Cancel', team_config_path, :class => "btn btn-link" %>
+  </div>
+</div>

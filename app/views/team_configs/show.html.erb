@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Data Pasukan</h2>
+    <h2>Tetapan Pengurusan Pasukan</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Data Pasukan</span>
+          <span>Tetapan Pengurusan Pasukan</span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -21,17 +21,16 @@
     <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">Data Pasukan</h2>
+          <h2 class="panel-title">Tetapan Pengurusan Pasukan</h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
-          <%= @team.team_name %>
+          <p><strong>Negeri:</strong> <%= @team_config.try(:state).blank? ? "nil" : @team_config.state.name %></p>
+          <p><strong>Jumlah Keseluruhan Pasukan:</strong> <%= @team_config.try(:count).blank? ? "nil" : @team_config.count %> pasukan</p>
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-          <% if !TeamOfficial.exists?("teamoffable_id" => "#{current_user.team.id}") %>
-            <%= link_to "Daftar Pegawai Pasukan", new_team_team_official_path(teamoffable_id: @team.id, teamoffable_type: @team.class.to_s) %>
-          <% end %>
+          <p>Jika anda ingin melakukan perubahan pada jumlah pasukan berdaftar, sila hubungi pihak LBR.</p>
         </div>
       </section>
     </div>

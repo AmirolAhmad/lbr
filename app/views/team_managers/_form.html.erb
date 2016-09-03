@@ -1,0 +1,59 @@
+<% if @team_manager.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@team_manager.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @team_manager.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :team_name, "Nama Pasukan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :team_name, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :username, "Nama Pengguna", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :username, :class => "form-control", required: true %>
+    <p class="help-block small">Mestilah rapat, tiada spasi</p>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :email, "Alamat Emel", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :email, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :password, "Kata Laluan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.password_field :password, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :password_confirmation, "Konformasi Kata Laluan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.password_field :password_confirmation, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<%= f.hidden_field :role, value: :team_manager %>
+<%= f.hidden_field :state_id, value: "#{current_user.state_id}" %>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button "Hantar", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
+    <%= link_to 'Batal', team_managers_path, :class => "btn btn-link" %>
+  </div>
+</div>

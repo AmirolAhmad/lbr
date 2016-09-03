@@ -13,6 +13,9 @@
 //= require jqueryui-touch-punch/jqueryui-touch-punch
 //= require jquery-appear/jquery-appear
 //= require bootstrap-multiselect/bootstrap-multiselect
+//= require datatables/jquery.dataTables
+//= require datatables/dataTables.tableTools
+//= require datatables/datatables
 //= require dashboard/theme
 //= require dashboard/theme.init
 //= require dashboard/theme.custom
