@@ -22,7 +22,7 @@
       <section class="panel">
         <header class="panel-heading">
           <h2 class="panel-title">Data Pegawai Pasukan</h2>
-          <p>Semua data adalah WAJIB diisi</p>
+          <p class="text-danger">Minimum pegawai pasukan mestilah tidak kurang dari 5 orang. Semua data adalah WAJIB diisi</p>
         </header>
         <div class="panel-body">
           <%= form_tag team_team_officials_path do %>
@@ -84,6 +84,9 @@
                       <%= f.label :email_address, "Alamat Emel Pegawai", class: "col-md-3 control-label" %>
                       <div class="col-md-9">
                         <%= f.text_field :email_address, :class => "form-control" %>
+                        <span class="help-block">
+                          <small>**Tidak wajib diisi</small>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -98,6 +101,9 @@
                       <%= f.label :no_sijil, "No Sijil", class: "col-md-3 control-label" %>
                       <div class="col-md-9">
                         <%= f.text_field :no_sijil, :class => "form-control" %>
+                        <span class="help-block">
+                          <small>**Tidak wajib diisi</small>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -109,6 +115,7 @@
                         <%= f.hidden_field :salinan_sijil_cache %>
                         <span class="help-block">
                           <small>For best result, please upload only 250px * 250px</small>
+                          <small>**Tidak wajib diisi</small>
                         </span>
                       </div>
                     </div>
