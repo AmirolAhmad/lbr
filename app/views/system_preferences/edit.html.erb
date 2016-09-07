@@ -1,0 +1,88 @@
+<section role="main" class="content-body">
+	<header class="page-header">
+		<h2>Tetapan Sistem</h2>
+
+		<div class="right-wrapper pull-right">
+			<ol class="breadcrumbs">
+				<li>
+					<%= link_to root_path do %>
+						<i class="fa fa-home"></i>
+					<% end %>
+				</li>
+				<li><span>Tetapan Sistem</span></li>
+			</ol>
+
+			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+		</div>
+	</header>
+
+  <div class="row">
+		<div class="col-lg-12">
+			<section class="panel">
+				<header class="panel-heading">
+					<div class="panel-actions">
+						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+					</div>
+
+					<h2 class="panel-title">Tetapan Sistem</h2>
+				</header>
+				<div class="panel-body">
+					<%= form_for @system_preference, url: system_preference_path, html: { multipart: true, method: :patch, class: "form-horizontal form-bordered" } do |f| %>
+
+            <% if @system_preference.errors.any? %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong><%= pluralize(@system_preference.errors.count, "error") %> prohibited
+                this user from being saved:</strong>
+                <ul>
+                  <% @system_preference.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                  <% end %>
+                </ul>
+            </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= f.label :start_window, "Tarikh Musim Mula", class: "col-md-3 control-label" %>
+              <div class="col-md-6">
+                <%= f.text_field :start_window, :class => "form-control", required: true, :value=>unless f.object.nil? || f.object.start_window.nil? then "#{f.object.start_window.strftime("%d/%m/%Y")}" end %>
+								<span class="help-block">
+						      <small>Mestilah 'hh/bb/tttt'</small>
+						    </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :end_window, "Tarikh Musim Berakhir", class: "col-md-3 control-label" %>
+              <div class="col-md-6">
+                <%= f.text_field :end_window, :class => "form-control", required: true, :value=>unless f.object.nil? || f.object.end_window.nil? then "#{f.object.end_window.strftime("%d/%m/%Y")}" end %>
+								<span class="help-block">
+						      <small>Mestilah 'hh/bb/tttt'</small>
+						    </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :player_reg_limit, "Limit Pendaftaran Pemain", class: "col-md-3 control-label" %>
+              <div class="col-md-6">
+                <%= f.text_field :player_reg_limit, :class => "form-control", required: true %>
+              </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+
+            <div class="form-group">
+              <label class="col-md-3 control-label"></label>
+              <div class="col-md-6">
+                <%= f.button "Simpan", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating..." } %>
+                <%= link_to 'Batal', dashboard_path, :class => "btn btn-link" %>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

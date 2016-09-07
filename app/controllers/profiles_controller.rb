@@ -7,13 +7,13 @@ class ProfilesController < ApplicationController
     if @user
       render
     else
-      redirect_to root_path, notice: "Profile not found!"
+      redirect_to root_path, notice: "Maaf, Profil tidak dijumpai!"
     end
   end
 
   def update
     if @user.update user_params
-      redirect_to edit_profile_path, notice: "Your profile has been updated."
+      redirect_to edit_profile_path, notice: "Profil anda berjaya dikemaskini."
     else
       render 'edit'
     end

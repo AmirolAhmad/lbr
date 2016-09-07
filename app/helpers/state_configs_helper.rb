@@ -1,0 +1,2 @@
+module StateConfigsHelper
+end

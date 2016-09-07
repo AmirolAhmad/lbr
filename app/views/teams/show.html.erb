@@ -20,18 +20,54 @@
   <div class="row">
     <div class="col-md-12">
       <section class="panel">
-        <header class="panel-heading">
-          <h2 class="panel-title">Data Pasukan</h2>
+        <header class="panel-heading bg-primary">
+          <div class="widget-profile-info">
+            <div class="profile-picture">
+              <%= image_tag(@team.team_logo_url(:low_res)) %>
+            </div>
+            <div class="profile-info">
+              <h4 class="name text-weight-semibold"><%= @team.team_name %></h4>
+              <h5 class="role"><%= @team.state.name %></h5>
+              <div class="profile-footer">
+                Tarikh akhir kemaskini: <%= @team.updated_at.strftime("%d %B %Y") %>
+              </div>
+            </div>
+          </div>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
-          <%= @team.team_name %>
+          <!-- <center><p><%= image_tag(@team.team_image_url(:low_res), class: "img-responsive") %></p></center> -->
+          <h4>Keterangan Pasukan</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ID Pasukan</td>
+                <td><strong><%= @team.team_ref_id %></strong></td>
+              </tr>
+              <tr>
+                <td>Alamat Pasukan</td>
+                <td><strong><%= @team.address %></strong></td>
+              </tr>
+              <tr>
+                <td>No. Telefon</td>
+                <td><strong><%= @team.phone_number %></strong></td>
+              </tr>
+              <tr>
+                <td>Alamat Emel</td>
+                <td><strong><%= @team.team_email_address %></strong></td>
+              </tr>
+              <tr>
+                <td>Pegawai Pentadbir Pasukan</td>
+                <td><strong><%= @team.user.profile.full_name.blank? ? @team.user.username : @team.user.profile.full_name %></strong> (<%= link_to "lihat", edit_profile_path %>)</td>
+              </tr>
+            </tbody>
+          </table>
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-          <% if !TeamOfficial.exists?("teamoffable_id" => "#{current_user.team.id}") %>
-            <%= link_to "Daftar Pegawai Pasukan", new_team_team_official_path(teamoffable_id: @team.id, teamoffable_type: @team.class.to_s) %>
-          <% end %>
         </div>
       </section>
     </div>

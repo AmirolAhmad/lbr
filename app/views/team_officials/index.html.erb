@@ -30,7 +30,8 @@
               <tr>
                 <th class="col-md-1">Bil</th>
                 <th>Nama</th>
-                <th class="col-md-4">Posisi</th>
+                <th class="col-md-2">Posisi</th>
+                <th class="col-md-2"></th>
               </tr>
             </thead>
             <tbody>
@@ -39,15 +40,16 @@
                 <td><%= index + 1 %></td>
                 <td><%= tm.name %></td>
                 <td><%= tm.position %></td>
+                <td><%= link_to "Lihat Data", team_team_official_path(tm) %></td>
               </tr>
               <% end %>
             </tbody>
           </table>
           <!-- Main Content End -->
         </div>
-        <% if @total == TRUE %>
+        <% if !TeamOfficial.exists?("team_id" => "#{current_user.team.id}") %>
         <div class="panel-footer">
-          <%= link_to "Daftar Data Pegawai Tadbir Baru", new_team_manager_path, class: "btn btn-primary" %>
+          <%= link_to "Daftar Data Pegawai Pasukan", new_team_team_official_path, class: "btn btn-primary" %>
         </div>
         <% end %>
       </section>

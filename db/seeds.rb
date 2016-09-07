@@ -25,3 +25,5 @@
 ].each do |state|
     State.find_or_create_by(name: state)
   end
+
+SystemPreference.find_or_create_by(created_at: Date.today, updated_at: Date.today)

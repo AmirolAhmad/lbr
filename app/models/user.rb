@@ -4,11 +4,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :team, dependent: :destroy
-  # has_many :teams, class_name: "Team", foreign_key: "admin_officer_id"
-  # has_many :team_coordinators, class_name: "Team", foreign_key: "general_coordinator_id"
-  belongs_to :state
-  has_one :team_config, dependent: :destroy
   has_one :profile, dependent: :destroy
+  has_one :state_config, dependent: :destroy
+  has_one :team_config, dependent: :destroy
+  belongs_to :state
+
   accepts_nested_attributes_for :profile, update_only: true, allow_destroy: true
 
   after_create :create_profile

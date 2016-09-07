@@ -20,6 +20,7 @@
 				</figure>
 				<div class="profile-info" data-lock-name="<%= current_user.username %>" data-lock-email="<%= current_user.email %>">
 					<span class="name"><%= current_user.username %></span>
+					<span class="role"><%= current_user.role %></span>
 				</div>
 
 				<i class="fa custom-caret"></i>
@@ -27,14 +28,15 @@
 
 			<div class="dropdown-menu">
 				<ul class="list-unstyled">
-					<li class="divider"></li>
 					<li>
-						<%= link_to settings_path, role: "menuitem", tabindex: "-1", data: { no_turbolink: true } do %>
-							<i class="fa fa-gear"></i> Account Settings
+						<%= link_to edit_profile_path, role: "menuitem", tabindex: "-1", data: { no_turbolink: true } do %>
+							<i class="fa fa-gear"></i> Kemaskini Profil
 						<% end %>
 					</li>
 					<li>
-						<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+						<%= link_to settings_path, role: "menuitem", tabindex: "-1", data: { no_turbolink: true } do %>
+							<i class="fa fa-gear"></i> Tetapan Akaun
+						<% end %>
 					</li>
 					<% if user_signed_in? %>
 					<li>

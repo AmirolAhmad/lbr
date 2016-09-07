@@ -1,0 +1,38 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Tetapan Pengurusan Pasukan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Tetapan Pengurusan Pasukan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Tetapan Pengurusan Pasukan</h2>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <p><strong>Negeri:</strong> <%= @state_config.try(:state).blank? ? "nil" : @state_config.state.name %></p>
+          <p><strong>Jumlah Keseluruhan Pasukan:</strong> <%= @state_config.try(:count).blank? ? "nil" : @state_config.count %> pasukan</p>
+          <!-- Main Content End -->
+        </div>
+        <div class="panel-footer">
+          <p>Jika anda ingin melakukan perubahan pada jumlah pasukan berdaftar, sila hubungi pihak LBR.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

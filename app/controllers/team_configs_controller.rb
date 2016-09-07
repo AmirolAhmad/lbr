@@ -12,7 +12,7 @@ class TeamConfigsController < ApplicationController
     @team_config = TeamConfig.create team_config_params
     @user.team_config = @team_config
     if @team_config.save
-      redirect_to new_team_manager_path, notice: "Well done brah! Your state team has been create"
+      redirect_to new_team_manager_path, notice: "Tahniah!Pengurus Pasukan berjaya diwujudkan"
     else
       render 'new'
     end
@@ -20,11 +20,6 @@ class TeamConfigsController < ApplicationController
 
   def show
     @team_config = TeamConfig.find_by_state_id("#{current_user.state_id}")
-    # @team_config = TeamConfig.joins(:user).where('current_user.state_id is ?', :state_id)
-
-
-    # scope :available, -> { joins(:user).where('users.state_id is eq ') }
-    # User.where(:country => 'canada')
   end
 
   private

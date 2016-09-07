@@ -14,7 +14,7 @@ class StateManagersController < ApplicationController
   def create
     @state_manager = User.new state_manager_params
     if @state_manager.save
-      redirect_to state_managers_path, notice: "Well done brah! Your state manager has been create"
+      redirect_to state_managers_path, notice: "Tahniah. Pengurus Negeri berjaya diwujudkan"
     else
       render 'new'
     end

@@ -14,6 +14,15 @@ ready = function() {
 
   }).apply( this, [ jQuery ]);
 
+  // datepicker
+  $('.datepicker').datepicker({
+    format:"yyyy-mm-dd",
+    todayBtn: "linked",
+    weekStart: 1,
+    todayHighlight: true,
+    autoclose: true
+  });
+
   // Modal
   (function( $ ) {
   	'use strict';

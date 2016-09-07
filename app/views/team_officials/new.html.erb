@@ -22,6 +22,7 @@
       <section class="panel">
         <header class="panel-heading">
           <h2 class="panel-title">Data Pegawai Pasukan</h2>
+          <p>Semua data adalah WAJIB diisi</p>
         </header>
         <div class="panel-body">
           <%= form_tag team_team_officials_path do %>
@@ -113,9 +114,7 @@
 
                 <hr>
 
-
-                <%= f.hidden_field :teamoffable_id, value: "#{params[:teamoffable_id]}" %>
-                <%= f.hidden_field :teamoffable_type, value: "#{params[:teamoffable_type]}" %>
+                <%= f.hidden_field :team_id, value: "#{current_user.team.id}" %>
 
               <% end %>
             <% end %>

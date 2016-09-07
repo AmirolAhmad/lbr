@@ -4,18 +4,18 @@ class TeamOfficialsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @team_officials = TeamOfficial.where("teamoffable_id" => "#{current_user.team.id}")
+    @team_officials = TeamOfficial.where("team_id" => "#{current_user.team.id}")
   end
 
   def new
-    @check = !TeamOfficial.exists?("teamoffable_id" => "#{current_user.team.id}")
+    @check = !TeamOfficial.exists?("team_id" => "#{current_user.team.id}")
     if @check == true
       @team_official = []
       12.times do
-        @team_official << TeamOfficial.new(teamoffable_id: params[:teamoffable_id], teamoffable_type: params[:teamoffable_type])
+        @team_official << TeamOfficial.new
       end
     else
-      redirect_to team_team_officials_path, notice: "Sorry.Your team official is already exists"
+      redirect_to team_team_officials_path, notice: "Maaf. Pegawai Pasukan anda telah wujud"
     end
   end
 
@@ -25,16 +25,16 @@ class TeamOfficialsController < ApplicationController
         TeamOfficial.create(team_official_params(to))
       end
     end
-    redirect_to team_team_officials_path, notice: "Well done brah! Your team manager has been create"
+    redirect_to team_team_officials_path, notice: "Tahniah. Data Pegawai Pasukan anda telah berjaya dicipta."
   end
 
   def show
-    # @team_official = TeamOfficial.find params[:id]
+    @team_official = TeamOfficial.find params[:id]
   end
 
   private
 
     def team_official_params(my_params)
-      my_params.permit(:name, :position, :phone_number, :ic_number, :email_address, :no_sijil, :salinan_sijil, :teamoffable_id, :teamoffable_type)
+      my_params.permit(:name, :position, :phone_number, :ic_number, :email_address, :no_sijil, :salinan_sijil)
     end
 end

@@ -35,20 +35,25 @@
               </li>
             </ul>
           </li>
+          <li>
+            <%= link_to edit_system_preference_path do %>
+              <i class="fa fa-gear"></i> <span>Tetapan Sistem</span>
+            <% end %>
+          </li>
           <% end %>
           <% if current_user.state_manager? %>
           <li class="nav-parent">
             <a><i class="fa fa-group"></i> <span>Pendaftaran Pasukan</span></a>
             <ul class="nav nav-children">
-              <% if !TeamConfig.exists?(:state_id => "#{current_user.state_id}") %>
+              <% if !StateConfig.exists?(:state_id => "#{current_user.state_id}") %>
               <li>
-                <%= link_to new_team_config_path do %>
+                <%= link_to new_state_config_path do %>
                   <i class="fa fa-group"></i> <span>Tetapan Pendaftaran<br/>Pasukan</span>
                 <% end %>
               </li>
               <% else %>
               <li>
-                <%= link_to team_config_path do %>
+                <%= link_to state_config_path do %>
                   <i class="fa fa-group"></i> <span>Lihat Pendaftaran<br/>Pasukan</span>
                 <% end %>
               </li>
@@ -85,6 +90,11 @@
               <li>
                 <%= link_to team_team_officials_path do %>
                   <i class="fa fa-group"></i> <span>Senarai Pegawai Pasukan</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to team_team_players_path do %>
+                  <i class="fa fa-group"></i> <span>Senarai Pemain Pasukan</span>
                 <% end %>
               </li>
               <% end %>

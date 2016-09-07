@@ -1,0 +1,88 @@
+<% if @team_player.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@team_player.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @team_player.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :player_name, "Nama Pemain", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :player_name, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :player_picture, "Gambar Pemain", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.file_field :player_picture, :class => "form-control", required: true %>
+    <%= f.hidden_field :player_picture_cache %>
+    <span class="help-block">
+      <small>For best result, please upload only 250px * 250px</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :ic_number, "No Kad Pengenalan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :ic_number, :class => "form-control", required: true %>
+    <span class="help-block">
+      <small>Tanpa '-'. Contoh: 860704236233</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :ic_picture, "Salinan Kad Pengenalan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.file_field :ic_picture, :class => "form-control", required: true %>
+    <%= f.hidden_field :ic_picture_cache %>
+    <span class="help-block">
+      <small>For best result, please upload only 250px * 250px</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :dob, "Tarikh Lahir", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :dob, :class => "form-control", placeholder: "hh/bb/tttt", required: true %>
+    <span class="help-block">
+      <small>Mestilah 'hh/bb/tttt'</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :position, "Posisi Pemain", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :position, :class => "form-control", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :jersey_no, "No Jersi", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :jersey_no, :class => "form-control", required: true %>
+    <span class="help-block">
+      <small>Bawah 21 tahun, hendaklah menggunakan no 51 dan ke atas</small>
+    </span>
+  </div>
+</div>
+
+<%= f.hidden_field :team_id, value: "#{current_user.team.id}" %>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button "Daftar Pemain Ini", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
+    <%= link_to 'Padam', team_team_players_path, :class => "btn btn-link" %>
+  </div>
+</div>

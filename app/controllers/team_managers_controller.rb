@@ -4,34 +4,30 @@ class TeamManagersController < ApplicationController
 
   def index
     @team_managers = User.where(role: 3, state_id: current_user.state)
-    @team_config = TeamConfig.find_by_state_id("#{current_user.state_id}")
-    @total = (@team_managers.count) < (@team_config.count)
+    @state_config = StateConfig.find_by_state_id("#{current_user.state_id}")
+    @total = (@team_managers.count) < (@state_config.count)
   end
 
   def new
     @team_managers = User.where(role: 3, state_id: current_user.state)
-    @team_config = TeamConfig.find_by_state_id("#{current_user.state_id}")
-    @total = (@team_managers.count) < (@team_config.count)
+    @state_config = StateConfig.find_by_state_id("#{current_user.state_id}")
+    @total = (@team_managers.count) < (@state_config.count)
 
     @team_manager ||= User.new
     if @total == TRUE
       render
     else
-      redirect_to team_managers_path, notice: "Sorry. you have reach your team limit to add"
+      redirect_to team_managers_path, notice: "Maaf. Anda telah memenuhi kuota pasukan anda yang telah ditetapkan."
     end
   end
 
   def create
     @team_manager = User.new team_manager_params
     if @team_manager.save
-      redirect_to team_managers_path, notice: "Well done brah! Your team manager has been create"
+      redirect_to team_managers_path, notice: "Tahniah. Pegawai Tadbir Pasukan telah berjaya diwujudkan."
     else
       render 'new'
     end
-  end
-
-  def show
-    #code
   end
 
   private

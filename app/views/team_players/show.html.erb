@@ -1,0 +1,79 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Data Pemain</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Data Pemain</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading bg-primary">
+          <div class="widget-profile-info">
+            <div class="profile-picture">
+              <%= image_tag(@team_player.player_picture_url(:standar)) %>
+            </div>
+            <div class="profile-info">
+              <h4 class="name text-weight-semibold"><%= @team_player.player_name %></h4>
+              <h5 class="role"><%= @team_player.position %></h5>
+              <div class="profile-footer">
+                Tarikh akhir kemaskini: <%= @team_player.updated_at.strftime("%d %B %Y") %>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <h4>Keterangan Pemain</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nama Penuh</td>
+                <td><strong><%= @team_player.player_name %></strong></td>
+              </tr>
+              <tr>
+                <td>ID Pemain</td>
+                <td><strong><%= @team_player.ref_id %></strong></td>
+              </tr>
+              <tr>
+                <td>No. Kad Pengenalan</td>
+                <td><strong><%= @team_player.ic_number %></strong></td>
+              </tr>
+              <tr>
+                <td>Tarikh Lahir</td>
+                <td><strong><%= @team_player.dob.strftime("%d %B %Y") %> (<%= @team_player.age %> tahun)</strong></td>
+              </tr>
+              <tr>
+                <td>Posisi Pemain</td>
+                <td><strong><%= @team_player.position %></strong></td>
+              </tr>
+              <tr>
+                <td>No Jersi</td>
+                <td><strong><%= @team_player.jersey_no %></strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Back", :back, class: "btn btn-default" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

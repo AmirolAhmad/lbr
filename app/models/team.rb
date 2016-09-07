@@ -4,12 +4,12 @@ class Team < ActiveRecord::Base
   mount_uploader :team_logo, TeamLogoUploader
   mount_uploader :team_image, TeamLogoUploader
 
-  belongs_to :state
   belongs_to :user
-  belongs_to :admin_officer, class_name: "User", foreign_key: "admin_officer_id"
-  belongs_to :general_coordinator, class_name: "User", foreign_key: "general_coordinator_id"
+  belongs_to :state
+  has_many :team_players, as: :teamoffable, dependent: :destroy
   has_many :team_officials, as: :teamoffable, dependent: :destroy
 
+  accepts_nested_attributes_for :team_players, allow_destroy: true
   accepts_nested_attributes_for :team_officials, allow_destroy: true
 
   default_scope -> { order('teams.created_at DESC') }
