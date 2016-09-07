@@ -22,9 +22,11 @@ gem 'mini_magick'
 gem 'fastimage'
 gem 'carrierwave-imageoptimizer'
 gem 'cocoon'
+gem 'fog'
 
 group :development, :test do
   gem 'byebug'
+  gem 'dotenv-rails'
 end
 
 group :development do

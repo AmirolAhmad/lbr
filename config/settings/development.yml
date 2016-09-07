@@ -1,1 +1,5 @@
 site_url: lbr.dev
+s3:
+  bucket: lbrorgmy-development
+  region: ap-southeast-1
+image_host: https://lbrorgmy-development.s3.amazonaws.com

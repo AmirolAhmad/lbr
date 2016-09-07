@@ -46,21 +46,21 @@
             <%= f.fields_for :profile_attributes, @user.profile do |profile| %>
 
               <div class="form-group">
-                <%= profile.label :full_name, "Full Name", class: "col-md-3 control-label" %>
+                <%= profile.label :full_name, "Nama Penuh", class: "col-md-3 control-label" %>
                 <div class="col-md-6">
                   <%= profile.text_field :full_name, :class => "form-control", placeholder: "John Doe", required: true %>
                 </div>
               </div>
 
               <div class="form-group">
-                <%= profile.label :ic_number, "IC Number", class: "col-md-3 control-label" %>
+                <%= profile.label :ic_number, "No Kad Pengenalan", class: "col-md-3 control-label" %>
                 <div class="col-md-6">
                   <%= profile.text_field :ic_number, :class => "form-control", placeholder: "860704236233", required: true %>
                 </div>
               </div>
 
               <div class="form-group">
-                <%= profile.label :phone_number, "Phone Number", class: "col-md-3 control-label" %>
+                <%= profile.label :phone_number, "No Telefon", class: "col-md-3 control-label" %>
                 <div class="col-md-6">
                   <%= profile.text_field :phone_number, :class => "form-control", placeholder: "0195151888", required: true %>
                 </div>

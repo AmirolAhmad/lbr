@@ -11,7 +11,7 @@ class TeamPlayer < ActiveRecord::Base
   def random_player_ref_id
     random = ['1'..'9'].map { |i| i.to_a }.flatten
     player_ref_id = (0...6).map { random[rand(random.length)] }.join
-    self.update_attributes(team_ref_id: "LBR" + player_ref_id)
+    self.update_attributes(ref_id: "LBR" + player_ref_id)
   end
 
   def age

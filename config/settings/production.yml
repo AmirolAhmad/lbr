@@ -1,0 +1,5 @@
+site_url: lbr.org.my
+s3:
+  bucket: lbrorgmy-production
+  region: ap-southeast-1
+image_host: https://lbrorgmy-production.s3.amazonaws.com
