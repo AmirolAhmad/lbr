@@ -53,10 +53,7 @@
 <div class="form-group">
   <%= f.label :dob, "Tarikh Lahir", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :dob, :class => "form-control", placeholder: "hh/bb/tttt", required: true %>
-    <span class="help-block">
-      <small>Mestilah 'hh/bb/tttt'</small>
-    </span>
+    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "hh/bb/tttt", required: true %>
   </div>
 </div>
 
