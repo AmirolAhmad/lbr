@@ -83,7 +83,7 @@
                     <div class="form-group">
                       <%= f.label :email_address, "Alamat Emel Pegawai", class: "col-md-3 control-label" %>
                       <div class="col-md-9">
-                        <%= f.text_field :email_address, :class => "form-control", required: true %>
+                        <%= f.text_field :email_address, :class => "form-control" %>
                       </div>
                     </div>
                   </div>
@@ -97,7 +97,7 @@
                     <div class="form-group">
                       <%= f.label :no_sijil, "No Sijil", class: "col-md-3 control-label" %>
                       <div class="col-md-9">
-                        <%= f.text_field :no_sijil, :class => "form-control", required: true %>
+                        <%= f.text_field :no_sijil, :class => "form-control" %>
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,11 @@
                     <div class="form-group">
                       <%= f.label :salinan_sijil, "Salinan Sijil", class: "col-md-3 control-label" %>
                       <div class="col-md-9">
-                        <%= f.text_field :salinan_sijil, :class => "form-control", required: true %>
+                        <%= f.file_field :salinan_sijil, :class => "form-control" %>
+                        <%= f.hidden_field :salinan_sijil_cache %>
+                        <span class="help-block">
+                          <small>For best result, please upload only 250px * 250px</small>
+                        </span>
                       </div>
                     </div>
                   </div>
