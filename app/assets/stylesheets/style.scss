@@ -1,0 +1,36 @@
+body {
+  padding-top: 20px;
+}
+
+section#login-form {
+	padding-bottom: 20px;
+}
+
+section#register-form {
+	padding-bottom: 20px;
+}
+//
+// section#password-form {
+// 	padding-top: 180px;
+// }
+
+section#login-form p,
+section#register-form p,
+section#password-form p {
+	font-size: 16px;
+}
+
+section#login-form p a,
+section#register-form p a,
+section#password-form p a {
+	font-weight: 600;
+}
+
+#login-form .form-box,
+#register-form .form-box,
+#password-form .form-box {
+	background-color: #ffffff;
+	padding: 0 20px;
+	border-radius: 6px;
+  border: 1px solid #e1e1e1;
+}

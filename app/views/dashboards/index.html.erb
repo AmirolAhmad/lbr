@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Main Dashboard</h2>
+    <h2>Muka Hadapan</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Dashboard</span>
+          <span>Muka Hadapan</span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -19,24 +19,16 @@
   </header>
   <div class="row">
     <div class="col-md-12">
-      <section class="panel">
-        <header class="panel-heading">
-          <h2 class="panel-title">Dashboard</h2>
-        </header>
-        <div class="panel-body">
-          <!-- Main Content Start -->
-          <% if user_signed_in? %>
-            <h1>Dashboards#index</h1>
-            <p>Find me in app/views/dashboards/index.html.erb</p>
-            <p>
-              <%= link_to destroy_user_session_path, method: "delete" do %>
-                <i class="fa fa-sign-out"></i> Logout
-              <% end %>
-            </p>
-          <% end %>
-          <!-- Main Content End -->
-        </div>
-      </section>
+      <section class="panel panel-horizontal">
+				<header class="panel-heading bg-white">
+					<div class="panel-heading-icon bg-primary mt-sm">
+						<i class="fa fa-soccer-ball-o"></i>
+					</div>
+				</header>
+				<div class="panel-body p-lg">
+					<h3 class="text-weight-semibold mt-sm">Selamat Datang</h3>
+				</div>
+			</section>
     </div>
   </div>
 </section>
