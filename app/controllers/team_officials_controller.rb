@@ -21,7 +21,7 @@ class TeamOfficialsController < ApplicationController
 
   def create
     @team_official = params["team_officials"].each do |to|
-      if to["name"] != "" || to["position"] != "" || to["phone_number"] != "" || to["ic_number"] != "" || to["email_address"] != "" || to["no_sijil"] != "" || to["salinan_sijil"] != ""
+      if to["name"] != "" || to["position"] != "" || to["phone_number"] != "" || to["ic_number"] != "" || to["email_address"] != "" || to["profile_picture"] != "" || to["no_sijil"] != "" || to["salinan_sijil"] != ""
         TeamOfficial.create(team_official_params(to))
       end
     end
@@ -35,6 +35,6 @@ class TeamOfficialsController < ApplicationController
   private
 
     def team_official_params(my_params)
-      my_params.permit(:name, :position, :phone_number, :ic_number, :email_address, :no_sijil, :salinan_sijil, :salinan_sijil_cache)
+      my_params.permit(:name, :position, :phone_number, :profile_picture, :profile_picture_cache, :ic_number, :email_address, :no_sijil, :salinan_sijil, :salinan_sijil_cache)
     end
 end
