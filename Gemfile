@@ -31,4 +31,9 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'letter_opener'
+  gem 'quiet_assets'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-faster-assets', '~> 1.0'
 end
