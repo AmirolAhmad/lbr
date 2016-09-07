@@ -11,7 +11,7 @@ class TeamOfficialsController < ApplicationController
     @check = !TeamOfficial.exists?("team_id" => "#{current_user.team.id}")
     if @check == true
       @team_official = []
-      12.times do
+      10.times do
         @team_official << TeamOfficial.new
       end
     else

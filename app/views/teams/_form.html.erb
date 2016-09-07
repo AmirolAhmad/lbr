@@ -61,7 +61,7 @@
         <% else %>
           <%= image_tag('default/team_logo_low_res.png', class: "img-responsive") %>
         <% end %>
-        <%= f.file_field :team_logo, :class => "form-control" %>
+        <%= f.file_field :team_logo, :class => "form-control", required: true %>
         <%= f.hidden_field :team_logo_cache %>
         <span class="help-block">
           <small>For best result, please upload only 1200px * 630px (High Resolution) or 600px * 315px (Low Resolution)</small>
