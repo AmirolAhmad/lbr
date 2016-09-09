@@ -35,6 +35,6 @@ class TeamOfficialsController < ApplicationController
   private
 
     def team_official_params(my_params)
-      my_params.permit(:name, :position, :phone_number, :profile_picture, :profile_picture_cache, :ic_number, :email_address, :no_sijil, :salinan_sijil, :salinan_sijil_cache)
+      my_params.permit(:name, :position, :team_id, :phone_number, :profile_picture, :profile_picture_cache, :ic_number, :email_address, :no_sijil, :salinan_sijil, :salinan_sijil_cache)
     end
 end
