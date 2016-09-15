@@ -1,0 +1,119 @@
+<% if @team.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@team.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @team.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :team_name, "Nama Pasukan", class: "col-md-2 control-label" %>
+  <div class="col-md-10">
+    <%= f.text_field :team_name, value: "#{@team.user.team.team_name}", :class => "form-control", disabled: "disabled" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :phone_number, "Nombor Telefon", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <%= f.text_field :phone_number, :class => "form-control", required: true %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :team_email_address, "Alamat Emel", class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+        <%= f.text_field :team_email_address, :class => "form-control", required: true %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :address, "Alamat Pasukan", class: "col-md-2 control-label" %>
+  <div class="col-md-10">
+    <%= f.text_area :address, :class => "form-control", rows: 5, required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :state_id, "Negeri", class: "col-md-2 control-label" %>
+  <div class="col-md-3">
+    <%= f.text_field :state_id, value: "#{@team.user.state.name}", :class => "form-control", disabled: "disabled" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :team_logo, "Logo Pasukan", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <% if @team.try(:team_logo?) %>
+          <%= image_tag(@team.team_logo_url(:low_res), class: "img-responsive") %>
+        <% else %>
+          <%= image_tag('default/team_logo_low_res.png', class: "img-responsive") %>
+        <% end %>
+        <%= f.file_field :team_logo, :class => "form-control" %>
+        <%= f.hidden_field :team_logo_cache %>
+        <span class="help-block">
+          <small>For best result, please upload only 1200px * 630px (High Resolution) or 600px * 315px (Low Resolution)</small>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :team_image, "Gambar Pasukan", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <% if @team.try(:team_image?) %>
+          <%= image_tag(@team.team_image_url(:low_res), class: "img-responsive") %>
+        <% else %>
+          <%= image_tag('default/team_logo_low_res.png', class: "img-responsive") %>
+        <% end %>
+        <%= f.file_field :team_image, :class => "form-control" %>
+        <%= f.hidden_field :team_image_cache %>
+        <span class="help-block">
+          <small>For best result, please upload only 1200px * 630px (High Resolution) or 600px * 315px (Low Resolution)</small>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-center">Pegawai Pasukan Utama</h3>
+<hr>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-1">1.</div>
+  <div class="col-md-4">
+    <strong><%= @team.user.profile.full_name.nil? ? @team.user.username : @team.user.profile.full_name %></strong>
+  </div>
+  <div class="col-md-4">
+    Pegawai Tadbir
+  </div>
+</div>
+
+<%= f.hidden_field :team_name, value: "#{@team.user.team_name}" %>
+<%= f.hidden_field :admin_officer_id, value: "#{@team.user.id}" %>
+<%= f.hidden_field :state_id, value: "#{@team.user.state_id}" %>
+
+<hr>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button :class => "btn btn-primary pull-right", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } do %>
+      <i class='fa fa-save'></i> Simpan
+    <% end %>
+    <%= link_to 'Batal', team_path, :class => "btn btn-link pull-right" %>
+  </div>
+</div>

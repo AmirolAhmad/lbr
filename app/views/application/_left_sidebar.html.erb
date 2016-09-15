@@ -21,6 +21,16 @@
           </li>
           <% if current_user.lbr_admin? %>
           <li class="nav-parent">
+            <a><i class="fa fa-group"></i> <span>Konfigurasi Admin</span></a>
+            <ul class="nav nav-children">
+              <li>
+                <%= link_to admin_teams_path do %>
+                  <i class="fa fa-group"></i> <span>Lihat Senarai Pasukan</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-parent">
             <a><i class="fa fa-group"></i> <span>Daftar Pengurus Negeri</span></a>
             <ul class="nav nav-children">
               <li>

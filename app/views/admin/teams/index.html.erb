@@ -1,0 +1,57 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Senarai Pasukan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Senarai Pasukan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Senarai Pasukan</h2>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <table class="table table-bordered table-striped mb-none" id="datatable-lbr">
+            <thead>
+              <tr>
+                <th class="col-md-1">Bil</th>
+                <th>Nama Pasukan</th>
+                <th class="col-md-2">Negeri</th>
+                <th class="col-md-2">ID Pasukan</th>
+                <th class="col-md-2">Pegawai Tadbir</th>
+                <th class="col-md-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @teams.each_with_index do |t,index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= t.team_name %></td>
+                <td><%= t.state.name %></td>
+                <td><%= t.team_ref_id %></td>
+                <td><%= t.user.username %></td>
+                <td><%= link_to "Lihat Data", admin_team_path(t) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

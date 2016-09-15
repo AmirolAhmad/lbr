@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Data Pemain</h2>
+    <h2>Data Pegawai Pasukan</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Data Pemain</span>
+          <span>Data Pegawai Pasukan</span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -23,20 +23,20 @@
         <header class="panel-heading bg-primary">
           <div class="widget-profile-info">
             <div class="profile-picture">
-              <%= image_tag(@team_player.player_picture_url(:standar)) %>
+              <%= image_tag(@team_official.profile_picture_url(:standar)) %>
             </div>
             <div class="profile-info">
-              <h4 class="name text-weight-semibold"><%= @team_player.player_name %></h4>
-              <h5 class="role"><%= @team_player.position %></h5>
+              <h4 class="name text-weight-semibold"><%= @team_official.name %></h4>
+              <h5 class="role"><%= @team_official.position %></h5>
               <div class="profile-footer">
-                Tarikh akhir kemaskini: <%= @team_player.updated_at.strftime("%d %B %Y") %>
+                Tarikh akhir kemaskini: <%= @team_official.updated_at.strftime("%d %B %Y") %>
               </div>
             </div>
           </div>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
-          <h4>Keterangan Pemain</h4>
+          <h4>Keterangan Pegawai</h4>
           <table class="table table-bordered">
             <thead>
               <tr></tr>
@@ -44,34 +44,35 @@
             <tbody>
               <tr>
                 <td>Nama Penuh</td>
-                <td><strong><%= @team_player.player_name %></strong></td>
-              </tr>
-              <tr>
-                <td>ID Pemain</td>
-                <td><strong><%= @team_player.ref_id %></strong></td>
+                <td><strong><%= @team_official.name %></strong></td>
               </tr>
               <tr>
                 <td>No. Kad Pengenalan</td>
-                <td><strong><%= @team_player.ic_number %></strong></td>
+                <td><strong><%= @team_official.ic_number %></strong></td>
               </tr>
               <tr>
-                <td>Tarikh Lahir</td>
-                <td><strong><%= @team_player.dob.strftime("%d %B %Y") %> (<%= @team_player.age %> tahun)</strong></td>
+                <td>No. Telefon</td>
+                <td><strong><%= @team_official.phone_number %></strong></td>
+              </tr>
+              <tr>
+                <td>Alamat Emel</td>
+                <td><strong><%= @team_official.email_address %></strong></td>
               </tr>
               <tr>
                 <td>Posisi Pemain</td>
-                <td><strong><%= @team_player.position %></strong></td>
+                <td><strong><%= @team_official.position %></strong></td>
               </tr>
               <tr>
-                <td>No Jersi</td>
-                <td><strong><%= @team_player.jersey_no %></strong></td>
+                <td>No Sijil</td>
+                <td><strong><%= @team_official.no_sijil %></strong></td>
               </tr>
             </tbody>
           </table>
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-          <%= link_to "Kembali", :back, class: "btn btn-default" %>
+          <%= link_to "Kemaskini Data Pegawai", edit_admin_team_team_official_path(id:@team_official), class: "btn btn-primary" %>
+          <%= link_to "Kembali ke Senarai Pegawai", admin_team_team_officials_path, class: "btn btn-default" %>
         </div>
       </section>
     </div>
