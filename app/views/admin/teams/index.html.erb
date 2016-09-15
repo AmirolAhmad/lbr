@@ -32,7 +32,7 @@
                 <th>Nama Pasukan</th>
                 <th class="col-md-2">Negeri</th>
                 <th class="col-md-2">ID Pasukan</th>
-                <th class="col-md-2">Pegawai Tadbir</th>
+                <!-- <th class="col-md-2">Pegawai Tadbir</th> -->
                 <th class="col-md-2"></th>
               </tr>
             </thead>
@@ -43,7 +43,7 @@
                 <td><%= t.team_name %></td>
                 <td><%= t.state.name %></td>
                 <td><%= t.team_ref_id %></td>
-                <td><%= t.user.username %></td>
+                <!-- <td><%#= t.user.username %></td> -->
                 <td><%= link_to "Lihat Data", admin_team_path(t) %></td>
               </tr>
               <% end %>
