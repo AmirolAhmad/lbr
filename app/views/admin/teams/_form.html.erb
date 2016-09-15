@@ -114,6 +114,6 @@
     <%= f.button :class => "btn btn-primary pull-right", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } do %>
       <i class='fa fa-save'></i> Simpan
     <% end %>
-    <%= link_to 'Batal', team_path, :class => "btn btn-link pull-right" %>
+    <%= link_to 'Batal', admin_team_path(@team), :class => "btn btn-link pull-right" %>
   </div>
 </div>
