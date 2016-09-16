@@ -1,0 +1,100 @@
+<% if @team_official.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@team_officialteam_official.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @team_official.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :name, "Nama Pegawai", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :name, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :profile_picture, "Gambar Profil", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.file_field :profile_picture, :class => "form-control" %>
+    <%= f.hidden_field :profile_picture_cache %>
+    <span class="help-block">
+      <small>For best result, please upload only 250px * 250px</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :position, "Posisi", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :position, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :phone_number, "No Teleon", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :phone_number, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :ic_number, "No Kad Pengenalan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :ic_number, :class => "form-control" %>
+    <span class="help-block">
+      <small>Tanpa '-'. Contoh: 860704236233</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :email_address, "Alamat Emel", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :email_address, :class => "form-control" %>
+    <span class="help-block">
+      <small>Tanpa '-'. Contoh: 860704236233</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :no_sijil, "No Sijil", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :no_sijil, :class => "form-control" %>
+    <span class="help-block">
+      <small>**Hanya wajib diisi jika posisi adalah Ketua Jurulatih</small>
+    </span>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :salinan_sijil, "Salinan Sijil", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <p>
+      <% if @team_official.try(:salinan_sijil?) %>
+        <%= image_tag(@team_official.salinan_sijil_url(:standar), class: "img-responsive") %>
+      <% end %>
+    </p>
+    <%= f.file_field :salinan_sijil, :class => "form-control" %>
+    <%= f.hidden_field :salinan_sijil_cache %>
+    <span class="help-block">
+      <small>**Hanya wajib diisi jika posisi adalah Ketua Jurulatih</small>
+    </span>
+  </div>
+</div>
+
+<%= f.hidden_field :team_id, value: "#{@team_official.team.id}" %>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button "Simpan", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
+    <%= link_to 'Kembali', team_team_official_path(id:@team_official), :class => "btn btn-link" %>
+  </div>
+</div>

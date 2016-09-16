@@ -21,6 +21,24 @@ class TeamPlayersController < ApplicationController
     end
   end
 
+  def edit
+    @team_player = TeamPlayer.find(params[:id])
+    if @team_player
+      render
+    else
+      redirect_to team_team_player_path(@team_player), notice: "Maaf! Pasukan tidak dijumpai!"
+    end
+  end
+
+  def update
+    @team_player = TeamPlayer.find(params[:id])
+    if @team_player.update_attributes team_player_params
+      redirect_to team_team_player_path(id:@team_player), notice: "Data Pemain Pasukan berjaya dikemaskini."
+    else
+      render 'edit'
+    end
+  end
+
   def show
     @team_player = TeamPlayer.find params[:id]
   end
