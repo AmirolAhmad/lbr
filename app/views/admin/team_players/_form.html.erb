@@ -21,6 +21,11 @@
 <div class="form-group">
   <%= f.label :player_picture, "Gambar Pemain", class: "col-md-3 control-label" %>
   <div class="col-md-6">
+    <p>
+      <% if @team_player.try(:player_picture?) %>
+        <%= image_tag(@team_player.player_picture_url(:standar), class: "img-responsive") %>
+      <% end %>
+    </p>
     <%= f.file_field :player_picture, :class => "form-control" %>
     <%= f.hidden_field :player_picture_cache %>
     <span class="help-block">
@@ -42,6 +47,11 @@
 <div class="form-group">
   <%= f.label :ic_picture, "Salinan Kad Pengenalan", class: "col-md-3 control-label" %>
   <div class="col-md-6">
+    <p>
+      <% if @team_player.try(:ic_picture?) %>
+        <%= image_tag(@team_player.ic_picture_url(:standar), class: "img-responsive") %>
+      <% end %>
+    </p>
     <%= f.file_field :ic_picture, :class => "form-control" %>
     <%= f.hidden_field :ic_picture_cache %>
     <span class="help-block">
