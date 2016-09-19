@@ -6,6 +6,8 @@ class TeamPlayer < ActiveRecord::Base
 
   belongs_to :team
 
+  validates_uniqueness_of :ic_number
+
   default_scope -> { order('team_players.created_at DESC') }
 
   def random_player_ref_id
