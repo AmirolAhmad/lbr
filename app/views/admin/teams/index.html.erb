@@ -40,8 +40,8 @@
               <% @teams.each_with_index do |t,index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= t.team_name %></td>
-                <td><%= t.state.name %></td>
+                <td><%= t.team_name.upcase %></td>
+                <td><%= t.state.name.upcase %></td>
                 <td><%= t.team_ref_id %></td>
                 <!-- <td><%#= t.user.username %></td> -->
                 <td><%= link_to "Lihat Data", admin_team_path(t) %></td>

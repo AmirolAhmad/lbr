@@ -1,7 +1,7 @@
 <% if @team_official.errors.any? %>
 <div class="alert alert-danger alert-dismissable">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  <strong><%= pluralize(@team_officialteam_official.errors.count, "error") %> prohibited
+  <strong><%= pluralize(@team_official.errors.count, "error") %> prohibited
     this user from being saved:</strong>
     <ul>
       <% @team_official.errors.full_messages.each do |msg| %>

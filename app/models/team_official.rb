@@ -6,6 +6,10 @@ class TeamOfficial < ActiveRecord::Base
 
   belongs_to :team
 
+  validates_presence_of :salinan_sijil, :if => lambda { |o| o.position == "Ketua Jurulatih" }
+  validates_presence_of :no_sijil, :if => lambda { |o| o.position == "Ketua Jurulatih" }
+  validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }
+
   def random_ref_id
     random = ['1'..'9'].map { |i| i.to_a }.flatten
     player_ref_id = (0...6).map { random[rand(random.length)] }.join

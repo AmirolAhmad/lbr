@@ -64,7 +64,7 @@
               </tr>
               <tr>
                 <td>No Sijil</td>
-                <td><strong><%= @team_official.no_sijil %></strong></td>
+                <td><strong><%= @team_official.no_sijil %> <% if @team_official.try(:salinan_sijil?) %><%= link_to "(lihat sijil)", @team_official.salinan_sijil_url, target: "_blank" %><% end %></strong></td>
               </tr>
             </tbody>
           </table>
@@ -72,7 +72,7 @@
         </div>
         <div class="panel-footer">
           <%= link_to "Kemaskini", edit_team_team_official_path(@team_official), class: "btn btn-primary" %>
-          <%= link_to "Kembali", :back, class: "btn btn-default" %>
+          <%= link_to "Kembali", team_team_officials_path, class: "btn btn-default" %>
         </div>
       </section>
     </div>

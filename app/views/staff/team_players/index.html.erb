@@ -38,8 +38,8 @@
               <% @team_players.each_with_index do |tp, index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= tp.player_name %></td>
-                <td><%= tp.position %></td>
+                <td><%= tp.player_name.upcase %></td>
+                <td><%= tp.position.upcase %></td>
                 <td><%= link_to "Lihat Data", staff_team_team_player_path(id:tp) %></td>
               </tr>
               <% end %>
