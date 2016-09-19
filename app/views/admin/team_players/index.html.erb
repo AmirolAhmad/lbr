@@ -40,8 +40,8 @@
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= tp.player_name.upcase %></td>
-                <td><%= tp.age %> tahun</td>
                 <td><%= tp.position.upcase %></td>
+                <td><%= tp.age %> tahun</td>
                 <td><%= link_to "Lihat Data", admin_team_team_player_path(id:tp) %></td>
               </tr>
               <% end %>
