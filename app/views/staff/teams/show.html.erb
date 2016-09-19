@@ -1,0 +1,78 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Data Pasukan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Data Pasukan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading bg-primary">
+          <div class="widget-profile-info">
+            <div class="profile-picture">
+              <%= image_tag(@team.team_logo_url(:low_res)) %>
+            </div>
+            <div class="profile-info">
+              <h4 class="name text-weight-semibold"><%= @team.team_name %></h4>
+              <h5 class="role"><%= @team.state.name %></h5>
+              <div class="profile-footer">
+                Tarikh akhir kemaskini: <%= @team.updated_at.strftime("%d %B %Y") %>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <!-- <center><p><%= image_tag(@team.team_image_url(:low_res), class: "img-responsive") %></p></center> -->
+          <h4>Keterangan Pasukan</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ID Pasukan</td>
+                <td><strong><%= @team.team_ref_id %></strong></td>
+              </tr>
+              <tr>
+                <td>Alamat Pasukan</td>
+                <td><strong><%= @team.address %></strong></td>
+              </tr>
+              <tr>
+                <td>No. Telefon</td>
+                <td><strong><%= @team.phone_number %></strong></td>
+              </tr>
+              <tr>
+                <td>Alamat Emel</td>
+                <td><strong><%= @team.team_email_address %></strong></td>
+              </tr>
+              <tr>
+                <td>Pegawai Pentadbir Pasukan</td>
+                <td><strong><%= @team.user.profile.full_name.blank? ? @team.user.username : @team.user.profile.full_name %></strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+          <%= link_to "Lihat Data Pegawai Pasukan", staff_team_team_officials_path(@team), class: "btn btn-success" %>
+          <%= link_to "Lihat Data Pemain Pasukan", staff_team_team_players_path(@team), class: "btn btn-warning" %>
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Kembali ke Senarai Pasukan", staff_teams_path, class: "btn btn-default" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

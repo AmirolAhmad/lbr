@@ -22,6 +22,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :staff, path: '/submaster' do
+    resources :teams do
+      resources :team_officials
+      resources :team_players
+    end
+  end
+
   get "/dashboard" => 'dashboards#index'
   resource :team, only: [:new, :create, :show] do
     resources :team_officials, only: [:index, :new, :create, :show, :edit, :update]

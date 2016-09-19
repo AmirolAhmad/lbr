@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [:user, :lbr_admin, :state_manager, :team_manager]
+  enum role: [:user, :lbr_admin, :state_manager, :team_manager, :staff]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
