@@ -33,13 +33,6 @@ module Authenticable
     end
   end
 
-  def require_view_only
-    unless current_user.try(:state_manager?) || current_user.try(:staff?)
-      flash.notice = "View Level permissions required to access this page."
-      redirect_to dashboard_path
-    end
-  end
-
   def require_user
     unless current_user
       store_location
