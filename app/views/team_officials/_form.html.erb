@@ -21,6 +21,11 @@
 <div class="form-group">
   <%= f.label :profile_picture, "Gambar Profil", class: "col-md-3 control-label" %>
   <div class="col-md-6">
+    <p>
+      <% if @team_official.try(:profile_picture?) %>
+        <%= image_tag(@team_official.profile_picture_url(:standar), class: "img-responsive") %>
+      <% end %>
+    </p>
     <%= f.file_field :profile_picture, :class => "form-control" %>
     <%= f.hidden_field :profile_picture_cache %>
     <span class="help-block">
