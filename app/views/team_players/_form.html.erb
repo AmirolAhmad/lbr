@@ -24,6 +24,8 @@
     <p>
       <% if @team_player.try(:player_picture?) %>
         <%= image_tag(@team_player.player_picture_url(:standar), class: "img-responsive") %>
+      <% else %>
+        <%= image_tag "default-avatar.png" %>
       <% end %>
     </p>
     <%= f.file_field :player_picture, :class => "form-control" %>

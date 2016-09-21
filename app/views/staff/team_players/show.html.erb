@@ -23,7 +23,11 @@
         <header class="panel-heading bg-primary">
           <div class="widget-profile-info">
             <div class="profile-picture">
-              <%= image_tag(@team_player.player_picture_url(:standar)) %>
+              <% if @team_player.try(:player_picture?) %>
+                <%= image_tag(@team_player.player_picture_url(:standar)) %>
+              <% else %>
+                <%= image_tag "default-avatar.png" %>
+              <% end %>
             </div>
             <div class="profile-info">
               <h4 class="name text-weight-semibold"><%= @team_player.player_name %></h4>
