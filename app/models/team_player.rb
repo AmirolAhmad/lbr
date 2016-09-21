@@ -1,8 +1,10 @@
 class TeamPlayer < ActiveRecord::Base
+  enum status: [:registered, :rejected, :in_review]
   mount_uploader :player_picture, PlayerPictureUploader
   mount_uploader :ic_picture, PlayerPictureUploader
 
   after_create :random_player_ref_id
+  after_initialize :set_player_status, :if => :new_record?
 
   belongs_to :team
 
@@ -20,5 +22,9 @@ class TeamPlayer < ActiveRecord::Base
   def age
     now = Time.now.utc.to_date
     now.year - self.dob.year - ((now.month > self.dob.month || (now.month == self.dob.month && now.day >= self.dob.day)) ? 0 : 1)
+  end
+
+  def set_player_status
+    self.status ||= :registered
   end
 end
