@@ -66,6 +66,14 @@
                 <td>No Jersi</td>
                 <td><strong><%= @team_player.jersey_no %></strong></td>
               </tr>
+              <tr>
+                <td>Status</td>
+                <td>
+                  <span class="label <%= @team_player.in_review? ? 'label-warning' : @team_player.registered? ? 'label-primary' : 'label-danger' %>">
+                    <%= @team_player.status.upcase %>
+                  </span>
+                </td>
+              </tr>
             </tbody>
           </table>
           <!-- Main Content End -->
