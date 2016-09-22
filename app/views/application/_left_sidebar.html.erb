@@ -21,11 +21,11 @@
           </li>
           <% if current_user.lbr_admin? %>
           <li class="nav-parent">
-            <a><i class="fa fa-group"></i> <span>Konfigurasi Admin</span></a>
+            <a><i class="fa fa-gear"></i> <span>Konfigurasi Admin</span></a>
             <ul class="nav nav-children">
               <li>
                 <%= link_to admin_teams_path do %>
-                  <i class="fa fa-group"></i> <span>Lihat Senarai Pasukan</span>
+                  <i class="fa fa-registered"></i> <span>Lihat Senarai Pasukan</span>
                 <% end %>
               </li>
             </ul>
@@ -35,19 +35,19 @@
             <ul class="nav nav-children">
               <li>
                 <%= link_to state_managers_path do %>
-                  <i class="fa fa-group"></i> <span>Lihat Senarai Pengurus</span>
+                  <i class="fa fa-suitcase"></i> <span>Lihat Senarai Pengurus</span>
                 <% end %>
               </li>
               <li>
                 <%= link_to new_state_manager_path do %>
-                  <i class="fa fa-group"></i> <span>Daftar Data Baru</span>
+                  <i class="fa fa-key"></i> <span>Daftar Data Baru</span>
                 <% end %>
               </li>
             </ul>
           </li>
           <li>
             <%= link_to edit_system_preference_path do %>
-              <i class="fa fa-gear"></i> <span>Tetapan Sistem</span>
+              <i class="fa fa-soccer-ball-o"></i> <span>Tetapan Sistem</span>
             <% end %>
           </li>
           <% elsif current_user.state_manager? || current_user.staff? %>
