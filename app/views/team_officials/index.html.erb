@@ -47,11 +47,13 @@
           </table>
           <!-- Main Content End -->
         </div>
-        <% if !TeamOfficial.exists?("team_id" => "#{current_user.team.id}") %>
         <div class="panel-footer">
+        <% if !TeamOfficial.exists?("team_id" => "#{current_user.team.id}") %>
           <%= link_to "Daftar Data Pegawai Pasukan", new_team_team_official_path, class: "btn btn-primary" %>
-        </div>
+        <% else %>
+          <%= link_to "Muat Turun dalam PDF", team_team_officials_path(@team_officials, :format => "pdf"), :class => "btn btn-primary", :target => "_blank" %>
         <% end %>
+        </div>
       </section>
     </div>
   </div>

@@ -23,6 +23,8 @@ gem 'fastimage'
 gem 'carrierwave-imageoptimizer'
 gem 'cocoon'
 gem 'fog'
+gem 'prawn'
+gem 'prawn-table'
 
 group :development, :test do
   gem 'byebug'
