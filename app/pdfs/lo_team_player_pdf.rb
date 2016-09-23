@@ -46,8 +46,8 @@ class LoTeamPlayerPdf < Prawn::Document
 
     move_down 1
     text "#{@team.address}", :size => 7, :color => "585858"
-    text "#{@team.phone_number}", :size => 7, :color => "585858"
-    text "#{@team.team_email_address}", :size => 7, :color => "585858"
+    text "No Telefon: #{@team.phone_number}", :size => 7, :color => "585858"
+    text "Alamat Emel: #{@team.team_email_address}", :size => 7, :color => "585858"
   end
 
   def team_details
