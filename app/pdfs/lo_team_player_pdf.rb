@@ -55,7 +55,7 @@ class LoTeamPlayerPdf < Prawn::Document
     text "Senarai Pemain Pasukan", :size => 11, :color => "585858"
     move_down 4
     data = [
-      ["No", "ID", "Nama Pegawai", "No Kad Pengenalan", "Posisi", "No Jersi"]
+      ["No", "ID", "Nama Pemain", "No Kad Pengenalan", "Posisi", "No Jersi"]
     ]
     @team_players.each_with_index do |f, index|
       data += [
