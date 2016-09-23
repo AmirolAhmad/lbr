@@ -22,13 +22,52 @@
       <section class="panel panel-horizontal">
 				<header class="panel-heading bg-white">
 					<div class="panel-heading-icon bg-primary mt-sm">
-						<i class="fa fa-soccer-ball-o"></i>
+						<%= image_tag "LogoLBR.png", class: "img-responsive" %>
 					</div>
 				</header>
 				<div class="panel-body p-lg">
-					<h3 class="text-weight-semibold mt-sm">Selamat Datang</h3>
+					<h3 class="text-weight-semibold mt-sm">SISTEM PENDAFTARAN LIGA BOLASEPAK RAKYAT</h3>
 				</div>
 			</section>
     </div>
   </div>
 </section>
+
+<div id="modalHeaderColorPrimary" class="modal-block modal-header-color modal-block-primary mfp-hide">
+  <section class="panel">
+    <header class="panel-heading">
+      <h2 class="panel-title">Pengumuman Penting</h2>
+    </header>
+    <div class="panel-body">
+      <div class="modal-wrapper">
+        <div class="modal-icon">
+          <i class="fa fa-exclamation-circle"></i>
+        </div>
+        <div class="modal-text">
+          <h5>Proses pendaftaran pemain telah ditutup!</h5>
+          <p>Adalah dengan ini, kami ingin memaklumkan bahawa sistem pendaftaran pemain pasukan telah ditutup pada 22hb September 2016 jam 12:00pm</p>
+        </div>
+      </div>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-default modal-dismiss">Ok</button>
+        </div>
+      </div>
+    </footer>
+  </section>
+</div>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $.magnificPopup.open({
+      items: {
+        src: '#modalHeaderColorPrimary'
+      },
+      type: 'inline',
+  		preloader: false,
+  		modal: true
+    });
+  });
+</script>
