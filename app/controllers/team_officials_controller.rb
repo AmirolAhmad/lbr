@@ -5,16 +5,6 @@ class TeamOfficialsController < ApplicationController
 
   def index
     @team_officials = TeamOfficial.where("team_id" => "#{current_user.team.id}")
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = TeamOfficialPdf.new(@team_officials, view_context)
-        send_data pdf.render, filename:
-        "TeamOfficials-#{current_user.team.team_name}.pdf",
-        type: "application/pdf",
-        disposition: "inline"
-      end
-    end
   end
 
   def new
