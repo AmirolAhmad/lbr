@@ -23,9 +23,16 @@ Rails.application.routes.draw do
   end
 
   namespace :staff, path: '/submaster' do
-    resources :teams do
-      resources :team_officials
-      resources :team_players
+    resources :teams, only: [:index, :show] do
+      resources :team_officials, only: [:index, :show]
+      resources :team_players, only: [:index, :show]
+    end
+  end
+
+  namespace :lo, path: '/sub2master' do
+    resources :teams, only: [:index, :show] do
+      resources :team_officials, only: [:index, :show]
+      resources :team_players, only: [:index, :show]
     end
   end
 

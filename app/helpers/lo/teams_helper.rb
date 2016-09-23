@@ -1,0 +1,2 @@
+module Lo::TeamsHelper
+end

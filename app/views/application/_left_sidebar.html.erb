@@ -50,12 +50,23 @@
               <i class="fa fa-soccer-ball-o"></i> <span>Tetapan Sistem</span>
             <% end %>
           </li>
-          <% elsif current_user.state_manager? || current_user.staff? %>
+          <% elsif current_user.staff? %>
           <li class="nav-parent">
             <a><i class="fa fa-group"></i> <span>Konfigurasi Pasukan</span></a>
             <ul class="nav nav-children">
               <li>
                 <%= link_to staff_teams_path do %>
+                  <i class="fa fa-group"></i> <span>Lihat Senarai Pasukan</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          <% elsif current_user.state_manager? %>
+          <li class="nav-parent">
+            <a><i class="fa fa-group"></i> <span>Konfigurasi Pasukan</span></a>
+            <ul class="nav nav-children">
+              <li>
+                <%= link_to lo_teams_path do %>
                   <i class="fa fa-group"></i> <span>Lihat Senarai Pasukan</span>
                 <% end %>
               </li>
