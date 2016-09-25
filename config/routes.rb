@@ -39,7 +39,11 @@ Rails.application.routes.draw do
   get "/dashboard" => 'dashboards#index'
   resource :team, only: [:new, :create, :show] do
     resources :team_officials, only: [:index, :new, :create, :show, :edit, :update]
-    resources :team_players, only: [:index, :new, :create, :show, :edit, :update]
+    # choose either one
+    # activate new registration player
+    # resources :team_players, only: [:index, :new, :create, :show, :edit, :update]
+    # de-activate new and edit player
+    resources :team_players, only: [:index, :show], except: [:new, :create, :edit, :update]
   end
   resource :team_config, only: [:show, :new, :create]
   resource :state_config, only: [:show, :new, :create]
