@@ -9,7 +9,8 @@ class TeamOfficial < ActiveRecord::Base
   validates_presence_of :salinan_sijil, :if => lambda { |o| o.position == "Ketua Jurulatih" }
   validates_presence_of :no_sijil, :if => lambda { |o| o.position == "Ketua Jurulatih" }
   validates_uniqueness_of :ic_number
-  validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }
+  validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
+  validates :phone_number, numericality: { only_integer: true }, format: { without: /\s/ }
 
   default_scope -> { order('team_officials.created_at DESC') }
 

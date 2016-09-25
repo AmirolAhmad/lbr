@@ -9,7 +9,7 @@ class TeamPlayer < ActiveRecord::Base
   belongs_to :team
 
   validates_uniqueness_of :ic_number
-  validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }
+  validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
 
   default_scope -> { order('team_players.created_at DESC') }
 
