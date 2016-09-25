@@ -18,6 +18,17 @@ class Admin::TeamOfficialsController < AdminController
 
   def show
     @team_official = TeamOfficial.find(params[:id])
+    # generate PDF
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TagPegawaiPdf.new(@team_official, view_context)
+        send_data pdf.render, filename:
+        "TeamOfficials-#{@team_official.name}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
   end
 
   def edit

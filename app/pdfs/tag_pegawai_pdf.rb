@@ -18,6 +18,6 @@ class TagPegawaiPdf < Prawn::Document
     draw_text "#{@team_official.position.upcase}", at: [75, 239], :size => 18, :style => :bold
     draw_text "#{@team_official.team.team_name.upcase}", at: [75, 202], :size => 18, :style => :bold
     draw_text "#{@team_official.ic_number.upcase}", at: [175, 159], :size => 18, :style => :bold
-    draw_text "#{@team_official.ref_id.upcase}", at: [75, 118], :size => 18, :style => :bold
+    draw_text "#{@team_official.ref_id}", at: [75, 118], :size => 18, :style => :bold
   end
 end

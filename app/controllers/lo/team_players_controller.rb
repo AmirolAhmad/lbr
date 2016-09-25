@@ -21,5 +21,16 @@ class Lo::TeamPlayersController < LoController
 
   def show
     @team_player = TeamPlayer.find(params[:id])
+    # generate PDF
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TagPemainPdf.new(@team_player, view_context)
+        send_data pdf.render, filename:
+        "TeamPlayers-#{@team_player.player_name}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
   end
 end

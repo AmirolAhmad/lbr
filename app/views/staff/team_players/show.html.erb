@@ -84,6 +84,7 @@
         </div>
         <div class="panel-footer">
           <%= link_to "Kembali ke Senarai Pemain", staff_team_team_players_path, class: "btn btn-default" %>
+          <%= link_to "Muat Turun TAG Pegawai", lo_team_team_player_path(id:@team_player, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
         </div>
       </section>
     </div>

@@ -77,6 +77,7 @@
         <div class="panel-footer">
           <%= link_to "Kemaskini Data Pegawai", edit_admin_team_team_official_path(id:@team_official), class: "btn btn-primary" %>
           <%= link_to "Kembali ke Senarai Pegawai", admin_team_team_officials_path, class: "btn btn-default" %>
+          <%= link_to "Muat Turun TAG Pegawai", admin_team_team_official_path(id:@team_official, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
         </div>
       </section>
     </div>
