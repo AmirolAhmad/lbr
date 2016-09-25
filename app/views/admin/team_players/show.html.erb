@@ -85,6 +85,7 @@
         <div class="panel-footer">
           <%= link_to "Kemaskini Data Pemain", edit_admin_team_team_player_path(id:@team_player), class: "btn btn-primary" %>
           <%= link_to "Kembali ke Senarai Pemain", admin_team_team_players_path, class: "btn btn-default" %>
+          <%= link_to "Muat Turun TAG Pegawai", admin_team_team_player_path(id:@team_player, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
         </div>
       </section>
     </div>
