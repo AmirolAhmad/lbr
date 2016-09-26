@@ -16,7 +16,7 @@ class TagPemainPdf < Prawn::Document
 
     draw_text "#{@team_player.player_name.upcase}", at: [-25, 161], :size => 10, :style => :bold
     draw_text "#{@team_player.team.team_name.upcase}", at: [-25, 127], :size => 10, :style => :bold
-    draw_text "#{@team_player.jersey_no}", at: [200, 120], :size => 71, :style => :bold
+    draw_text "#{@team_player.jersey_no}", at: [200, 120], :size => 51, :style => :bold
     draw_text "#{@team_player.ic_number.upcase}", at: [-25, 96], :size => 10, :style => :bold
     draw_text "#{@team_player.ref_id}", at: [-25, 65], :size => 10, :style => :bold
   end
