@@ -30,6 +30,7 @@
               <tr>
                 <th class="col-md-1">Bil</th>
                 <th>Nama</th>
+                <th class="col-md-2">ID</th>
                 <th class="col-md-2">Posisi</th>
                 <th class="col-md-2"></th>
               </tr>
@@ -39,6 +40,7 @@
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= to.name.upcase %></td>
+                <td><%= to.ref_id %></td>
                 <td><%= to.position.upcase %></td>
                 <td><%= link_to "Lihat Data", lo_team_team_official_path(id:to) %></td>
               </tr>
