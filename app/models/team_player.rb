@@ -9,7 +9,11 @@ class TeamPlayer < ActiveRecord::Base
   belongs_to :team
 
   validates_uniqueness_of :ic_number
+  validates_uniqueness_of :jersey_no, scope: :team_id
+  validates_presence_of :jersey_no
+  validates_presence_of :position
   validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
+  validates :jersey_no, numericality: { only_integer: true }, length: { maximum: 3 }, format: { without: /\s/ }
 
   default_scope -> { order('team_players.created_at DESC') }
 
