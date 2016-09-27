@@ -20,7 +20,7 @@ class TeamPlayer < ActiveRecord::Base
   end
 
   def age
-    now = Time.now.year
+    # now = Time.now.year
     now = Time.now.utc.to_date
     now.year - self.dob.year# - ((now.month > self.dob.month || (now.month == self.dob.month && now.day >= self.dob.day)) ? 0 : 1)
   end
