@@ -25,6 +25,7 @@ gem 'cocoon'
 gem 'fog'
 gem 'prawn'
 gem 'prawn-table'
+gem 'sentry-raven'
 
 group :development, :test do
   gem 'byebug'
