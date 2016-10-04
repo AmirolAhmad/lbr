@@ -31,6 +31,7 @@
                 <th class="col-md-1">Bil</th>
                 <th>Nama</th>
                 <th class="col-md-2">Posisi</th>
+                <th class="col-md-2">No Jersi</th>
                 <th class="col-md-2">Umur</th>
                 <th class="col-md-2"></th>
               </tr>
@@ -41,6 +42,7 @@
                 <td><%= index + 1 %></td>
                 <td><%= tp.player_name.upcase %></td>
                 <td><%= tp.position.upcase %></td>
+                <td><%= tp.jersey_no %></td>
                 <td><%= tp.age %> tahun</td>
                 <td><%= link_to "Lihat Data", staff_team_team_player_path(id:tp) %></td>
               </tr>
