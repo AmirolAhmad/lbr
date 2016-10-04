@@ -54,6 +54,7 @@
         <div class="panel-footer">
           <%= link_to "Kembali ke Data Pasukan", lo_team_path(@team), class: "btn btn-default" %>
           <%= link_to "Muat Turun dalam PDF", lo_team_team_players_path(@team, :format => "pdf"), :class => "btn btn-primary", :target => "_blank" %>
+          <%= link_to "Muat Turun Senarai Pemilihan dalam PDF", selection_lo_team_team_player_path(id:@team, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
         </div>
       </section>
     </div>

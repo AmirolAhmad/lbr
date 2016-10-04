@@ -23,6 +23,25 @@ class TeamPlayersController < ApplicationController
     end
   end
 
+  def selection
+    @team = current_user.team
+    if current_user.state_id == @team.state_id
+      @team_players = TeamPlayer.where("team_id" => "#{current_user.team.id}")
+      @team_officials = TeamOfficial.where("team_id" => "#{current_user.team.id}")
+      respond_to do |format|
+        format.pdf do
+          pdf = SelectionListPdf.new(@team_players, @team_officials, @team, view_context)
+          send_data pdf.render, filename:
+          "TeamPlayers-#{@team.team_name}.pdf",
+          type: "application/pdf",
+          disposition: "inline"
+        end
+      end
+    else
+      redirect_to team_path, notice: "You have no authorization to this team!"
+    end
+  end
+
   def new
     @team_player ||= TeamPlayer.new
     render

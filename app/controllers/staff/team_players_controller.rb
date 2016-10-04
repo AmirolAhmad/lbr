@@ -15,6 +15,21 @@ class Staff::TeamPlayersController < StaffController
     end
   end
 
+  def selection
+    @team = Team.find params[:team_id]
+    @team_players = TeamPlayer.where(team_id: params[:team_id])
+    @team_officials = TeamOfficial.where(team_id: params[:team_id])
+    respond_to do |format|
+      format.pdf do
+        pdf = SelectionListPdf.new(@team_players, @team_officials, @team, view_context)
+        send_data pdf.render, filename:
+        "TeamPlayers-#{@team.team_name}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
+  end
+
   def show
     @team_player = TeamPlayer.find(params[:id])
     # generate PDF
