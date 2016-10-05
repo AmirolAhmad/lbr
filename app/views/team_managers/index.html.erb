@@ -39,10 +39,8 @@
               <% @team_managers.each_with_index do |tm,index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <!-- <td><%#= tm.profile.full_name.blank? ? tm.username : tm.profile.full_name %></td> -->
-                <td><%= tm.username %></td>
-                <!-- <td><%#= tm.profile.phone_number.blank? ? "N/A" : tm.profile.phone_number %></td> -->
-                <td><%= "N/A" %></td>
+                <td><%= tm.profile.full_name.blank? ? tm.username : tm.profile.full_name %></td>
+                <td><%= tm.profile.phone_number.blank? ? "N/A" : tm.profile.phone_number %></td>
                 <td><%= tm.team_name %></td>
                 <td><%= tm.created_at.strftime("%d %B %Y") %></td>
               </tr>
