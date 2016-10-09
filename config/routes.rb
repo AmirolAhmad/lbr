@@ -35,6 +35,9 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :zones do
+      resources :groups
+    end
   end
 
   namespace :lo, path: '/sub2master' do

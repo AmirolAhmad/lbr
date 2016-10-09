@@ -61,6 +61,16 @@
               </li>
             </ul>
           </li>
+          <li class="nav-parent">
+            <a><i class="fa fa-suitcase"></i> <span>Tetapan Perlawanan</span></a>
+            <ul class="nav nav-children">
+              <li>
+                <%= link_to staff_zones_path do %>
+                  <i class="fa fa-group"></i> <span>Zon</span>
+                <% end %>
+              </li>
+            </ul>
+          </li>
           <% elsif current_user.state_manager? %>
           <li class="nav-parent">
             <a><i class="fa fa-group"></i> <span>Konfigurasi Pasukan</span></a>
