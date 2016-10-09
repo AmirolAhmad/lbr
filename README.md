@@ -5,3 +5,4 @@
 - ```git tag```
 - ```git push --tags```
 - ```github_changelog_generator --token CHANGELOG_GITHUB_TOKEN```
+- ```rake database:correction_seq_id```
