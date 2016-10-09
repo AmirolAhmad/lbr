@@ -31,8 +31,8 @@
                 <th class="col-md-1">Bil</th>
                 <th>Nama</th>
                 <th class="col-md-2">Posisi</th>
-                <th class="col-md-2">No Jersi</th>
-                <th class="col-md-2">Umur</th>
+                <th class="col-md-1">No Jersi</th>
+                <th class="col-md-1">Umur</th>
                 <th class="col-md-2"></th>
               </tr>
             </thead>
@@ -44,7 +44,12 @@
                 <td><%= tp.position.upcase %></td>
                 <td><%= tp.jersey_no %></td>
                 <td><%= tp.age %> tahun</td>
-                <td><%= link_to "Lihat Data", admin_team_team_player_path(id:tp) %></td>
+                <td>
+                  <div class="btn-group btn-group-xs">
+                    <%= link_to "Lihat Data", admin_team_team_player_path(id:tp), class: "btn btn-primary" %>
+                    <%= link_to "Buang", admin_team_team_player_path(id:tp), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                  </div>
+                </td>
               </tr>
               <% end %>
             </tbody>

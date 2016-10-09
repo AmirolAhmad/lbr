@@ -42,7 +42,12 @@
                 <td><%= to.name.upcase %></td>
                 <td><%= to.ref_id %></td>
                 <td><%= to.position.upcase %></td>
-                <td><%= link_to "Lihat Data", admin_team_team_official_path(id:to) %></td>
+                <td>
+                  <div class="btn-group btn-group-xs">
+                    <%= link_to "Lihat Data", admin_team_team_official_path(id:to), class: "btn btn-primary" %>
+                    <%= link_to "Buang", admin_team_team_official_path(id:to), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                  </div>
+                </td>
               </tr>
               <% end %>
             </tbody>

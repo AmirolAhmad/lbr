@@ -59,10 +59,18 @@ class Admin::TeamOfficialsController < AdminController
   def update
     @team_official = TeamOfficial.find(params[:id])
     if @team_official.update_attributes team_official_params
-      # team_id:
       redirect_to admin_team_team_official_path(id:@team_official), notice: "Data Pegawai Pasukan berjaya dikemaskini."
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    @team_official = TeamOfficial.find(params[:id])
+    if @team_official.destroy
+      redirect_to admin_team_team_officials_path, notice: 'Data pegawai berjaya dihapuskan!'
+    else
+      render 'index'
     end
   end
 

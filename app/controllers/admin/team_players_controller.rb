@@ -82,6 +82,15 @@ class Admin::TeamPlayersController < AdminController
     end
   end
 
+  def destroy
+    @team_player = TeamPlayer.find(params[:id])
+    if @team_player.destroy
+      redirect_to admin_team_team_players_path, notice: 'Data pemain berjaya dihapuskan!'
+    else
+      render 'index'
+    end
+  end
+
   private
 
     def team_player_params
