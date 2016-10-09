@@ -16,6 +16,22 @@ class Admin::TeamOfficialsController < AdminController
     end
   end
 
+  def new
+    @team_official ||= TeamOfficial.new
+    render
+  end
+
+  def create
+    @team = Team.find params[:team_id]
+    @team_official = TeamOfficial.new team_official_params
+    if @team_official.save
+      @team_official.update_attribute(:team_id, @team.id)
+      redirect_to admin_team_team_officials_path, notice: "Tahniah! Pegawai berjaya diwujudkan."
+    else
+      render 'new'
+    end
+  end
+
   def show
     @team_official = TeamOfficial.find(params[:id])
     # generate PDF
@@ -43,6 +59,7 @@ class Admin::TeamOfficialsController < AdminController
   def update
     @team_official = TeamOfficial.find(params[:id])
     if @team_official.update_attributes team_official_params
+      # team_id:
       redirect_to admin_team_team_official_path(id:@team_official), notice: "Data Pegawai Pasukan berjaya dikemaskini."
     else
       render 'edit'

@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Data Pegawai Pasukan</h2>
+    <h2>Daftar Pemain</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Data Pegawai Pasukan</span>
+          <span>Daftar Pemain</span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -21,13 +21,12 @@
     <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">Data Pegawai Pasukan</h2>
-          <p class="text-danger">Minimum pegawai pasukan mestilah tidak kurang dari 5 orang dan tidak lebih dari 10 orang.</p>
+          <h2 class="panel-title">Daftar Pemain</h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
-          <%= form_for @team_official, url: team_team_officials_path, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
-            <%= render partial: 'form', locals: {f: f, post: @team_official} %>
+          <%= form_for @team_player, url: admin_team_team_players_path, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
+            <%= render partial: 'form', locals: {f: f, post: @team_player} %>
           <% end %>
           <!-- Main Content End -->
         </div>

@@ -16,6 +16,22 @@ class Admin::TeamPlayersController < AdminController
     end
   end
 
+  def new
+    @team_player ||= TeamPlayer.new
+    render
+  end
+
+  def create
+    @team = Team.find params[:team_id]
+    @team_player = TeamPlayer.new team_player_params
+    if @team_player.save
+      @team_player.update_attribute(:team_id, @team.id)
+      redirect_to admin_team_team_players_path, notice: "Tahniah! Pemain berjaya diwujudkan."
+    else
+      render 'new'
+    end
+  end
+
   def selection
     @team = Team.find params[:team_id]
     # if current_user.state_id == @team.state_id

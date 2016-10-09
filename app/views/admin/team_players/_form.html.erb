@@ -86,12 +86,10 @@
   </div>
 </div>
 
-<%= f.hidden_field :team_id, value: "#{@team_player.team.id}" %>
-
 <div class="form-group">
   <label class="col-md-2 control-label"></label>
   <div class="col-md-10">
     <%= f.button "Daftar Pemain Ini", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
-    <%= link_to 'Kembali', admin_team_team_player_path(id:@team_player), :class => "btn btn-link" %>
+    <%= link_to 'Kembali', admin_team_team_players_path, :class => "btn btn-link" %>
   </div>
 </div>
