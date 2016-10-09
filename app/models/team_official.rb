@@ -6,6 +6,21 @@ class TeamOfficial < ActiveRecord::Base
 
   belongs_to :team
 
+  POSITION_OPTIONS = [
+    "Pengurus", "Penolong Pengurus", "Penolong Pengurus 2", "Ketua Jurulatih", "Penolong Ketua Jurulatih 2",
+    "Jurulatih Penjaga Gawang", "Jurulatih Penjaga Gawang 2", "General Coordinator", "Pengerusi", "Setiausaha",
+    "Penolong Setiusaha", "Setiausaha Kehormat", "Bendahari" "Penolong Bendahari", "Pegawai Tadbir", "Penolong Pegawai Tadbir",
+    "Fisioterapi", "Penolong Fisioterapi", "Kitman", "Penolong Kitman", "Jurulatih", "Penolong Jurulatih", "Jurulatih Kecergasan",
+    "Penolong Jurulatih Kecergasan", "Pegawai Media", "Penolong Pegawai Media", "Pegawai Perubatan", "Penolong Pegawai Perubatan",
+    "Pegawai ICT", "Penolong Pegawai ICT", "Pegawai Khas", "Penolong Pegawai Khas", "Pegawai Pasukan", "Penolong Pegawai Pasukan",
+    "Pegawai Pengiring", "Penolong Pegawai Pengiring", "Pegawai Penyelaras", "Penolong Pegawai Penyelaras", "Pegawai Peralatan",
+    "Penolong Pegawai Peralatan", "Pegawai Perhubungan", "Penolong Pegawai Perhubungan", "Pegawai Teknikal", "Penolong Pegawai Teknikal",
+    "Pegawai Tempat", "Penolong Pegawai Tempat", "Penaung", "Pengarah Teknikal", "Tugas Khas", "Pengawai Keselamatan", "Penolong Pegawai Keselamatan",
+    "Pemandu", "Penolong Pemandu" 
+  ]
+
+  validates_presence_of :name
+  validates_presence_of :position
   validates_presence_of :salinan_sijil, :if => lambda { |o| o.position == "Ketua Jurulatih" }
   validates_presence_of :no_sijil, :if => lambda { |o| o.position == "Ketua Jurulatih" }
   validates_uniqueness_of :ic_number

@@ -11,6 +11,7 @@
 //= require jquery-placeholder/jquery-placeholder
 //= require jquery-ui/jquery-ui
 //= require jqueryui-touch-punch/jqueryui-touch-punch
+//= require select2/select2
 //= require jquery-appear/jquery-appear
 //= require bootstrap-multiselect/bootstrap-multiselect
 //= require datatables/jquery.dataTables

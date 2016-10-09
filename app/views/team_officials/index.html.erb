@@ -50,11 +50,8 @@
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-        <% if !TeamOfficial.exists?("team_id" => "#{current_user.team.id}") %>
-          <%= link_to "Daftar Data Pegawai Pasukan", new_team_team_official_path, class: "btn btn-primary" %>
-        <% else %>
-          <%= link_to "Muat Turun dalam PDF", team_team_officials_path(@team, :format => "pdf"), :class => "btn btn-primary", :target => "_blank" %>
-        <% end %>
+          <%= link_to "Daftar Data Pegawai", new_team_team_official_path, class: "btn btn-primary" %>
+          <%= link_to "Muat Turun dalam PDF", team_team_officials_path(@team, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
         </div>
       </section>
     </div>
