@@ -65,14 +65,14 @@
 <div class="form-group">
   <%= f.label :dob, "Tarikh Lahir", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "tttt/bb/dd", required: true, value: unless @team_player.dob.nil? then "#{@team_player.dob.strftime("%Y-%m-%d")}" end %>
+    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "tttt/bb/dd", value: unless @team_player.dob.nil? then "#{@team_player.dob.strftime("%Y-%m-%d")}" end %>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :position, "Posisi Pemain", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :position, :class => "form-control" %>
+    <%= f.select :position, TeamPlayer::POSITION_OPTIONS, { prompt: "-- Pilih posisi" }, { class: 'form-control populate placeholder', 'data-plugin-selectTwo' => 'data-plugin-selectTwo', 'data-plugin-options' => '{ "placeholder": "Pilih posisi", "allowClear": true }' } %>
   </div>
 </div>
 

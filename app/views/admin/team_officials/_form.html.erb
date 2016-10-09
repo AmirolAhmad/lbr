@@ -39,7 +39,7 @@
 <div class="form-group">
   <%= f.label :position, "Posisi", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :position, :class => "form-control" %>
+    <%= f.select :position, TeamOfficial::POSITION_OPTIONS, { prompt: "-- Pilih posisi" }, { class: 'form-control populate placeholder', 'data-plugin-selectTwo' => 'data-plugin-selectTwo', 'data-plugin-options' => '{ "placeholder": "Pilih posisi", "allowClear": true }' } %>
   </div>
 </div>
 

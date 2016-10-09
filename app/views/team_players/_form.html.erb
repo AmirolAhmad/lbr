@@ -14,7 +14,7 @@
 <div class="form-group">
   <%= f.label :player_name, "Nama Pemain", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :player_name, :class => "form-control", required: true %>
+    <%= f.text_field :player_name, :class => "form-control" %>
   </div>
 </div>
 
@@ -39,7 +39,7 @@
 <div class="form-group">
   <%= f.label :ic_number, "No Kad Pengenalan", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :ic_number, :class => "form-control", required: true %>
+    <%= f.text_field :ic_number, :class => "form-control" %>
     <span class="help-block">
       <small>Tanpa '-'. Contoh: 860704236233</small>
     </span>
@@ -54,7 +54,7 @@
         <%= image_tag(@team_player.ic_picture_url(:standar), class: "img-responsive") %>
       <% end %>
     </p>
-    <%= f.file_field :ic_picture, :class => "form-control", required: true %>
+    <%= f.file_field :ic_picture, :class => "form-control" %>
     <%= f.hidden_field :ic_picture_cache %>
     <span class="help-block">
       <small>For best result, please upload only 250px * 250px</small>
@@ -65,21 +65,21 @@
 <div class="form-group">
   <%= f.label :dob, "Tarikh Lahir", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "tttt/bb/hh", required: true %>
+    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "tttt/bb/hh" %>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :position, "Posisi Pemain", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :position, :class => "form-control", required: true %>
+    <%= f.select :position, TeamPlayer::POSITION_OPTIONS, { prompt: "-- Pilih posisi" }, { class: 'form-control populate placeholder', 'data-plugin-selectTwo' => 'data-plugin-selectTwo', 'data-plugin-options' => '{ "placeholder": "Pilih posisi", "allowClear": true }' } %>
   </div>
 </div>
 
 <div class="form-group">
   <%= f.label :jersey_no, "No Jersi", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :jersey_no, :class => "form-control", required: true %>
+    <%= f.text_field :jersey_no, :class => "form-control" %>
     <span class="help-block">
       <small>Bawah 21 tahun, hendaklah menggunakan no 51 dan ke atas</small>
     </span>

@@ -8,10 +8,20 @@ class TeamPlayer < ActiveRecord::Base
 
   belongs_to :team
 
+  POSITION_OPTIONS = [
+    "Penjaga Gol", "Penjaga Gol 1", "Penjaga Gol 2", "Centre Back", "Sweeper", "Full Back", "Wing Back (Kanan)", "Wing Back (Kiri)",
+    "Centre Midfield", "Defensive Midfield", "Attacking Midfield", "Wide Midfield", "Winger (Kanan)", "Winger (Kiri)",
+    "Centre Forward", "Striker"
+  ]
+
   validates_uniqueness_of :ic_number
   validates_uniqueness_of :jersey_no, scope: :team_id
+  validates_presence_of :player_name
   validates_presence_of :jersey_no
   validates_presence_of :position
+  validates_presence_of :ic_picture
+  validates_presence_of :dob
+  validates_presence_of :ic_number
   validates :ic_number, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
   validates :jersey_no, numericality: { only_integer: true }, length: { maximum: 3 }, format: { without: /\s/ }
 
