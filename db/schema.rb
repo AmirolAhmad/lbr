@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010015624) do
+ActiveRecord::Schema.define(version: 20161010040023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20161010015624) do
     t.integer  "staff_group_id"
     t.integer  "home_team_id"
     t.integer  "away_team_id"
+    t.integer  "status"
   end
 
   add_index "staff_team_schedules", ["away_team_id"], name: "index_staff_team_schedules_on_away_team_id", using: :btree

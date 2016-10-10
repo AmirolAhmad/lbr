@@ -21,6 +21,11 @@ class Staff::TeamSchedulesController < StaffController
     end
   end
 
+  def show
+    @group = Staff::Group.find params[:group_id]
+    @staff_team_schedule = Staff::TeamSchedule.find params[:id]
+  end
+
   private
 
     def staff_team_schedule_params
