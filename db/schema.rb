@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009222812) do
+ActiveRecord::Schema.define(version: 20161010015624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,25 @@ ActiveRecord::Schema.define(version: 20161009222812) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "staff_groups", ["staff_zone_id"], name: "index_staff_groups_on_staff_zone_id", using: :btree
+
+  create_table "staff_team_schedules", force: :cascade do |t|
+    t.datetime "tarikh_perl"
+    t.string   "bil_per"
+    t.string   "pbn"
+    t.time     "masa_perl"
+    t.string   "venue"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "staff_group_id"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+  end
+
+  add_index "staff_team_schedules", ["away_team_id"], name: "index_staff_team_schedules_on_away_team_id", using: :btree
+  add_index "staff_team_schedules", ["home_team_id"], name: "index_staff_team_schedules_on_home_team_id", using: :btree
+  add_index "staff_team_schedules", ["staff_group_id"], name: "index_staff_team_schedules_on_staff_group_id", using: :btree
 
   create_table "staff_zones", force: :cascade do |t|
     t.string   "title"
@@ -170,6 +189,9 @@ ActiveRecord::Schema.define(version: 20161009222812) do
   add_foreign_key "profiles", "users"
   add_foreign_key "staff_group_teams", "staff_groups"
   add_foreign_key "staff_group_teams", "teams"
+  add_foreign_key "staff_team_schedules", "staff_groups"
+  add_foreign_key "staff_team_schedules", "teams", column: "away_team_id"
+  add_foreign_key "staff_team_schedules", "teams", column: "home_team_id"
   add_foreign_key "state_configs", "states"
   add_foreign_key "state_configs", "users"
   add_foreign_key "team_configs", "states"

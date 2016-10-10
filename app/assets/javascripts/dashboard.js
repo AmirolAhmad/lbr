@@ -7,6 +7,7 @@
 //= require jquery-browser-mobile/jquery.browser.mobile
 //= require nanoscroller/nanoscroller
 //= require bootstrap-datepicker/bootstrap-datepicker
+//= require bootstrap-timepicker/bootstrap-timepicker
 //= require magnific-popup/jquery.magnific-popup
 //= require jquery-placeholder/jquery-placeholder
 //= require jquery-ui/jquery-ui

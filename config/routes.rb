@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :zones do
       resources :groups do
         resources :group_teams
+        resources :team_schedules
       end
     end
   end

@@ -23,6 +23,11 @@ ready = function() {
     autoclose: true
   });
 
+  // timepicker
+  $('.timepicker').timepicker({
+    minuteStep: 5
+  });
+
   // Modal
   (function( $ ) {
   	'use strict';

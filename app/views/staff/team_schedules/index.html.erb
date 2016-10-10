@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Senarai Pasukan</h2>
+    <h2>Jadual Perlawanan</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Senarai Pasukan bagi <%= @group.name %></span>
+          <span>Jadual Perlawanan Kumpulan <%= @group.name %></span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -21,7 +21,7 @@
     <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">Senarai Pasukan bagi <%= @group.name %></h2>
+          <h2 class="panel-title">Jadual Perlawanan bagi Kumpulan <%= @group.name %></h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
@@ -29,14 +29,16 @@
             <thead>
               <tr>
                 <th class="col-md-1">Bil</th>
-                <th>Nama Pasukan</th>
+                <th>Nama Pasukan (Home)</th>
+                <th>Nama Pasukan (Away)</th>
               </tr>
             </thead>
             <tbody>
-              <% @staff_group_teams.each_with_index do |group_team,index| %>
+              <% @staff_team_schedules.each_with_index do |team_schedule,index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= group_team.team.team_name %></td>
+                <td><%= team_schedule.home_team.team_name %></td>
+                <td><%= team_schedule.away_team.team_name %></td>
               </tr>
               <% end %>
             </tbody>
@@ -44,9 +46,8 @@
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-          <%= link_to "Daftar Pasukan", new_staff_zone_group_group_team_path, class: "btn btn-primary" %>
-          <%= link_to "Kembali Ke Kumpulan", staff_zone_groups_path, class: "btn btn-default" %>
-          <%= link_to "Jadual Perlawanan", staff_zone_group_team_schedules_path(group_id: @group), class: "btn btn-success pull-right" %>
+          <%= link_to "Masuk Jadual", new_staff_zone_group_team_schedule_path, class: "btn btn-primary" %>
+          <%= link_to "Kembali Ke Senarai Pasukan", staff_zone_group_group_teams_path, class: "btn btn-default" %>
         </div>
       </section>
     </div>
