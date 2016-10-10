@@ -1,33 +1,45 @@
 class SelectionListPdf < Prawn::Document
   require 'prawn/table'
 
-  def initialize(team_players, team_officials, team, view)
+  def initialize(team, view)
     super()
-    @team_players = team_players
-    @team_officials = team_officials
-    @team = team
+    @staff_team_schedule = team
     @view = view
+    lbr
     general
     list
     team_details
   end
 
+  def lbr
+    move_up 30
+    logopath =  "#{Rails.root}/app/assets/images/LogoLBR.png"
+    image logopath, :width => 50, :height => 50, :position => :center
+    move_down 5
+    text "LIGA BOLA SEPAK RAKYAT", :size => 10, :color => "585858", :style => :bold, :align => :center
+    text "E-2-08, 2nd Floor, Capital 5, Oasis Square, Jalan PJU 1A/7A, Oasis Damansara", :size => 8, :color => "585858", :align => :center
+    text "47301 Petaling Jaya,  Selangor Darul Ehsan", :size => 8, :color => "585858", :align => :center
+    text "Web: http://lbr.org.my", :size => 8, :color => "585858", :align => :center
+    move_down 1
+    text "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", :size => 8, :color => "c1c1c1", :align => :center
+  end
+
   def general
     text "SENARAI PILIHAN", :size => 8, :color => "585858", :style => :bold, align: :center
-    move_down 10
+    move_down 5
 
     data = [
       ["PERLAWANAN"]
     ]
     data2 = [
-      ["Bil Perlawanan", "", "Cuaca", ""],
-      ["Tarikh Perlawanan", "", "Masa", ""]
+      ["Bil Perlawanan", "#{@staff_team_schedule.bil_per}", "Cuaca", ""],
+      ["Tarikh Perlawanan", "#{@staff_team_schedule.tarikh_perl.strftime("%d %B %Y")}", "Masa", "#{@staff_team_schedule.masa_perl.strftime("%I:%M %p")}"]
     ]
     data3 = [
-      ["Venue", ""]
+      ["Venue", "#{@staff_team_schedule.venue}"]
     ]
     data4 = [
-      ["#{@team.team_name.upcase}", "vs", ""]
+      ["#{@staff_team_schedule.home_team.team_name.upcase}", "vs", "#{@staff_team_schedule.away_team.team_name.upcase}"]
     ]
     data5 = [
       ["Senarai Pasukan PTR", "Senarai Pasukan PL"]
@@ -142,7 +154,7 @@ class SelectionListPdf < Prawn::Document
     0.upto(0) do |i|
       data3 += [
         # @team_officials.select('distinct name').collect { |p| p.name }
-        ["#{@team_officials.where(position: "Ketua Jurulatih").collect { |p| p.name }.join(', ')}", "", "", ""],
+        #["#{@team_officials.where(position: "Ketua Jurulatih").collect { |p| p.name }.join(', ')}", "", "", ""],
         ["T.T", "T.T", "T.T", "T.T"]
       ]
     end
@@ -176,7 +188,7 @@ class SelectionListPdf < Prawn::Document
 
     move_down 5
     text "M = Main (11 orang), S = Simpanan (7 orang), Lain-lain = Tidak disenarai", :size => 8, :color => "585858", align: :center
-    move_down 70
+    move_down 40
     text "Tandatangan Komissioner Perlawanan/Koordinator Perlawanan: ___________________________________________", :size => 8, :color => "585858", align: :center
 
   end

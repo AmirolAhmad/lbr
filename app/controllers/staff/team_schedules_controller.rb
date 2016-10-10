@@ -26,6 +26,23 @@ class Staff::TeamSchedulesController < StaffController
     @staff_team_schedule = Staff::TeamSchedule.find params[:id]
   end
 
+  def selection
+    @group = Staff::Group.find params[:group_id]
+    @staff_team_schedule = Staff::TeamSchedule.find params[:group_id]
+    # @team_players = TeamPlayer.where(team_id: params[:team_id])
+    # @team_officials = TeamOfficial.where(team_id: params[:team_id])
+    respond_to do |format|
+      format.pdf do
+        # pdf = SelectionListPdf.new(@team_players, @team_officials, @staff_team_schedule, view_context)
+        pdf = SelectionListPdf.new(@staff_team_schedule, view_context)
+        send_data pdf.render, filename:
+        "SelectionList-#{@staff_team_schedule.bil_per}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
+  end
+
   private
 
     def staff_team_schedule_params
