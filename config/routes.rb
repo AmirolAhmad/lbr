@@ -36,7 +36,9 @@ Rails.application.routes.draw do
       end
     end
     resources :zones do
-      resources :groups
+      resources :groups do
+        resources :group_teams
+      end
     end
   end
 

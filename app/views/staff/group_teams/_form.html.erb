@@ -1,0 +1,27 @@
+<% if @staff_group_team.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@staff_group_team.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @staff_group_team.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :team_id, "Nama Pasukan", class: "col-md-3 control-label" %>
+  <div class="col-md-6">
+    <%= f.collection_select :team_id, (Team.order(:team_name) - Team.available), :id, :team_name, { prompt: "-- Pilih Pasukan" }, { class: 'form-control populate placeholder', 'data-plugin-selectTwo' => 'data-plugin-selectTwo', 'data-plugin-options' => '{ "placeholder": "Pilih posisi", "allowClear": true }' } %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button "Simpan", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
+    <%= link_to 'Kembali', staff_zone_group_group_teams_path, :class => "btn btn-link" %>
+  </div>
+</div>

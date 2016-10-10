@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
   <header class="page-header">
-    <h2>Senarai Kumpulan</h2>
+    <h2>Senarai Pasukan</h2>
     <div class="right-wrapper pull-right">
       <ol class="breadcrumbs">
         <li>
@@ -9,7 +9,7 @@
           <% end %>
         </li>
         <li>
-          <span>Senarai Kumpulan <%= @zone.title %></span>
+          <span>Senarai Pasukan bagi <%= @group.name %></span>
         </li>
       </ol>
       <a class="sidebar-right-toggle" data-open="sidebar-right">
@@ -21,7 +21,7 @@
     <div class="col-md-12">
       <section class="panel">
         <header class="panel-heading">
-          <h2 class="panel-title">Senarai Kumpulan bagi <%= @zone.title %></h2>
+          <h2 class="panel-title">Senarai Pasukan bagi <%= @group.name %></h2>
         </header>
         <div class="panel-body">
           <!-- Main Content Start -->
@@ -29,16 +29,14 @@
             <thead>
               <tr>
                 <th class="col-md-1">Bil</th>
-                <th>Nama Kumpulan</th>
-                <th class="col-md-2"></th>
+                <th>Nama Pasukan</th>
               </tr>
             </thead>
             <tbody>
-              <% @staff_groups.each_with_index do |group,index| %>
+              <% @staff_group_teams.each_with_index do |group_team,index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= group.name %></td>
-                <td><%= link_to "lihat pasukan", staff_zone_group_group_teams_path(group_id:group) %></td>
+                <td><%= group_team.team.team_name %></td>
               </tr>
               <% end %>
             </tbody>
@@ -46,8 +44,8 @@
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-          <%= link_to "Daftar Kumpulan", new_staff_zone_group_path, class: "btn btn-primary" %>
-          <%= link_to "Kembali Ke Zon", staff_zones_path, class: "btn btn-default" %>
+          <%= link_to "Daftar Pasukan", new_staff_zone_group_group_team_path, class: "btn btn-primary" %>
+          <%= link_to "Kembali Ke Kumpulan", staff_zone_groups_path, class: "btn btn-default" %>
         </div>
       </section>
     </div>
