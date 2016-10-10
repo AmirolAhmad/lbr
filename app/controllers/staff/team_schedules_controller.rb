@@ -29,12 +29,13 @@ class Staff::TeamSchedulesController < StaffController
   def selection
     @group = Staff::Group.find params[:group_id]
     @staff_team_schedule = Staff::TeamSchedule.find params[:group_id]
-    # @team_players = TeamPlayer.where(team_id: params[:team_id])
-    # @team_officials = TeamOfficial.where(team_id: params[:team_id])
+    @home_team_players = TeamPlayer.where(team_id: @staff_team_schedule.home_team_id)
+    @away_team_players = TeamPlayer.where(team_id: @staff_team_schedule.away_team_id)
+    @home_team_officials = TeamOfficial.where(team_id: @staff_team_schedule.home_team_id)
+    @away_team_officials = TeamOfficial.where(team_id: @staff_team_schedule.away_team_id)
     respond_to do |format|
       format.pdf do
-        # pdf = SelectionListPdf.new(@team_players, @team_officials, @staff_team_schedule, view_context)
-        pdf = SelectionListPdf.new(@staff_team_schedule, view_context)
+        pdf = SelectionListPdf.new(@staff_team_schedule, @home_team_officials, @away_team_officials, @home_team_players, @away_team_players, view_context)
         send_data pdf.render, filename:
         "SelectionList-#{@staff_team_schedule.bil_per}.pdf",
         type: "application/pdf",
