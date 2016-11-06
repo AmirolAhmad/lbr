@@ -74,6 +74,10 @@
                 <td>No Sijil</td>
                 <td><strong><%= @team_official.no_sijil %> <% if @team_official.try(:salinan_sijil?) %><%= link_to "(lihat sijil)", @team_official.salinan_sijil_url, target: "_blank" %><% end %></strong></strong></td>
               </tr>
+              <tr>
+                <td>Pasukan</td>
+                <td><strong><%= @team_official.team.team_name.upcase %></strong></td>
+              </tr>
             </tbody>
           </table>
           <!-- Main Content End -->

@@ -5,7 +5,12 @@ Theme Version: 	1.5.2
 */
 html,
 body {
-	background: #ecedf0;
+	// background: #ecedf0;
+	background: image-url('lbr-bg.jpg')no-repeat center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 	width: 100%;
 }
 
