@@ -40,7 +40,14 @@
               <% @team_players.each_with_index do |tp, index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= tp.player_name.upcase %></td>
+                <td>
+                  <% if tp.try(:player_picture?) %>
+                    <%= image_tag(tp.player_picture_url(:standar), class: 'img-circle', height: 15) %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: 'img-circle', height: 15 %>
+                  <% end %>
+                  <%= tp.player_name.upcase %>
+                </td>
                 <td><%= tp.position.upcase %></td>
                 <td><%= tp.jersey_no %></td>
                 <td><%= tp.age %> tahun</td>

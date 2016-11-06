@@ -39,7 +39,14 @@
               <% @team_officials.each_with_index do |to, index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= to.name.upcase %></td>
+                <td>
+                  <% if to.try(:profile_picture?) %>
+                    <%= image_tag(to.profile_picture_url(:standar), class: 'img-circle', height: 15) %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: 'img-circle', height: 15 %>
+                  <% end %>
+                  <%= to.name.upcase %>
+                </td>
                 <td><%= to.ref_id %></td>
                 <td><%= to.position.upcase %></td>
                 <td>

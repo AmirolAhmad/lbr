@@ -39,7 +39,14 @@
               <% @team_players.each_with_index do |tm,index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= tm.player_name.upcase %></td>
+                <td>
+                  <% if tm.try(:player_picture?) %>
+                    <%= image_tag(tm.player_picture_url(:standar), class: 'img-circle', height: 15) %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: 'img-circle', height: 15 %>
+                  <% end %>
+                  <%= tm.player_name.upcase %>
+                </td>
                 <td><%= tm.ref_id %></td>
                 <td><%= tm.position.upcase %></td>
                 <td><%= link_to "Lihat Data", team_team_player_path(tm) %></td>
