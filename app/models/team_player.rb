@@ -7,6 +7,7 @@ class TeamPlayer < ActiveRecord::Base
   after_initialize :set_player_status, :if => :new_record?
 
   belongs_to :team
+  has_many :staff_match_reports, class_name: 'Staff::MatchReport'
 
   POSITION_OPTIONS = [
     "Penjaga Gol", "Penjaga Gol 1", "Penjaga Gol 2", "Centre Back", "Sweeper", "Full Back", "Wing Back (Kanan)", "Wing Back (Kiri)",
@@ -41,5 +42,9 @@ class TeamPlayer < ActiveRecord::Base
 
   def set_player_status
     self.status ||= :registered
+  end
+
+  def best_player_detail
+    "#{self.player_name} - #{self.team.team_name}"
   end
 end

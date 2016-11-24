@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010040023) do
+ActiveRecord::Schema.define(version: 20161110015138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,22 @@ ActiveRecord::Schema.define(version: 20161010040023) do
   end
 
   add_index "staff_groups", ["staff_zone_id"], name: "index_staff_groups_on_staff_zone_id", using: :btree
+
+  create_table "staff_match_reports", force: :cascade do |t|
+    t.integer  "staff_team_schedule_id"
+    t.string   "cuaca"
+    t.string   "jumlah_penonton"
+    t.integer  "score_home_team"
+    t.integer  "score_away_team"
+    t.string   "pengadil"
+    t.text     "catatan"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "best_player_id"
+  end
+
+  add_index "staff_match_reports", ["best_player_id"], name: "index_staff_match_reports_on_best_player_id", using: :btree
+  add_index "staff_match_reports", ["staff_team_schedule_id"], name: "index_staff_match_reports_on_staff_team_schedule_id", using: :btree
 
   create_table "staff_team_schedules", force: :cascade do |t|
     t.datetime "tarikh_perl"
@@ -190,6 +206,8 @@ ActiveRecord::Schema.define(version: 20161010040023) do
   add_foreign_key "profiles", "users"
   add_foreign_key "staff_group_teams", "staff_groups"
   add_foreign_key "staff_group_teams", "teams"
+  add_foreign_key "staff_match_reports", "staff_team_schedules"
+  add_foreign_key "staff_match_reports", "team_players", column: "best_player_id"
   add_foreign_key "staff_team_schedules", "staff_groups"
   add_foreign_key "staff_team_schedules", "teams", column: "away_team_id"
   add_foreign_key "staff_team_schedules", "teams", column: "home_team_id"

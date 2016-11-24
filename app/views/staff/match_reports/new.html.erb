@@ -1,0 +1,36 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Keputusan Perlawanan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Keputusan Perlawanan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Keputusan Perlawanan bagi Pasukan <%= @staff_team_schedule.home_team.team_name.upcase %> vs <%= @staff_team_schedule.away_team.team_name.upcase %></h2>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <%= form_for @staff_match_report, url: staff_zone_group_team_schedule_match_reports_path, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
+            <%= render partial: 'form', locals: {f: f, post: @staff_match_report} %>
+          <% end %>
+          <!-- Main Content End -->
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

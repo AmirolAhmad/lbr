@@ -34,6 +34,7 @@ Rails.application.routes.draw do
           collection do
             get :selection
           end
+          resources :match_reports, except: :index
         end
       end
     end

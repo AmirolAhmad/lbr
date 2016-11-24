@@ -1,0 +1,95 @@
+<% if @staff_match_report.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong><%= pluralize(@staff_match_report.errors.count, "error") %> prohibited
+    this user from being saved:</strong>
+    <ul>
+      <% @staff_match_report.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+</div>
+<% end %>
+
+<p>Sila lengkapkan segala butiran dibawah:</p>
+<hr>
+
+<div class="col-md-6 form-group">
+  <label class="col-md-4 control-label">No Bil Perlawanan</label>
+  <div class="col-md-8">
+    <input type="text" value="<%= @staff_team_schedule.bil_per %>" class="form-control" disabled>
+  </div>
+</div>
+<div class="col-md-6 form-group">
+  <%= f.label :cuaca, "Cuaca", class: "col-md-4 control-label" %>
+  <div class="col-md-8">
+    <%= f.text_field :cuaca, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="col-md-6 form-group">
+  <label class="col-md-4 control-label">Tarikh Perlawanan</label>
+  <div class="col-md-8">
+    <input type="text" value="<%= @staff_team_schedule.tarikh_perl.strftime("%d %B %Y") %>" class="form-control" disabled>
+  </div>
+</div>
+<div class="col-md-6 form-group">
+  <label class="col-md-4 control-label">Masa Perlawanan</label>
+  <div class="col-md-8">
+    <input type="text" value="<%= @staff_team_schedule.masa_perl.strftime("%I:%M %p") %>" class="form-control" disabled>
+  </div>
+</div>
+
+<div class="col-md-12 form-group">
+  <%= f.label :jumlah_penonton, "Jumlah Penonton", class: "col-md-2 control-label" %>
+  <div class="col-md-3">
+    <%= f.text_field :jumlah_penonton, :class => "form-control" %>
+  </div>
+</div>
+
+<hr>
+
+<h4 class="text-center">Pemain Terbaik Perlawanan</h4><br/>
+<div class="col-md-12 form-group">
+  <%= f.label :best_player_id, "Pemain Terbaik", class: "col-md-2 control-label" %>
+  <div class="col-md-6">
+    <%= f.collection_select :best_player_id, TeamPlayer.where(team_id: @staff_team_schedule.home_team_id) + TeamPlayer.where(team_id: @staff_team_schedule.away_team_id), :id, :player_name, { prompt: "-- Pilih Pasukan" }, { class: 'form-control populate placeholder', 'data-plugin-selectTwo' => 'data-plugin-selectTwo', 'data-plugin-options' => '{ "placeholder": "Pilih pemain", "allowClear": true }' } %>
+  </div>
+</div>
+
+<h4 class="text-center">Keputusan Penuh</h4><br/>
+<div class="col-md-6 form-group">
+  <%= f.label :score_home_team, "Jumlah Jaringan (#{@staff_team_schedule.home_team.team_name.upcase})", class: "col-md-4 control-label" %>
+  <div class="col-md-8">
+    <%= f.text_field :jumlah_penonton, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="col-md-6 form-group">
+  <%= f.label :score_away_team, "Jumlah Jaringan (#{@staff_team_schedule.away_team.team_name.upcase})", class: "col-md-4 control-label" %>
+  <div class="col-md-8">
+    <%= f.text_field :jumlah_penonton, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="col-md-12 form-group">
+  <%= f.label :pengadil, "Nama Pengadil", class: "col-md-2 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_field :pengadil, :class => "form-control" %>
+  </div>
+</div>
+
+<div class="col-md-12 form-group">
+  <%= f.label :catatan, "Catatan (jika ada)", class: "col-md-2 control-label" %>
+  <div class="col-md-6">
+    <%= f.text_area :catatan, :class => "form-control", rows: 6 %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label"></label>
+  <div class="col-md-10">
+    <%= f.button "Simpan", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } %>
+    <%= link_to "Kembali", staff_zone_group_team_schedule_path(id:@staff_team_schedule), :class => "btn btn-link" %>
+  </div>
+</div>
