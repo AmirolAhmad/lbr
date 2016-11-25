@@ -1,0 +1,115 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Detail Perlawanan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Detail Perlawanan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading bg-primary">
+          <div class="widget-profile-info">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="profile-picture">
+                  <% if @staff_team_schedule.home_team.try(:team_logo?) %>
+                    <%= image_tag(@staff_team_schedule.home_team.team_logo_url(:low_res)) %>
+                  <% else %>
+                    <%= image_tag "default-team-avatar.jpg" %>
+                  <% end %>
+                </div>
+                <div class="profile-info" style="vertical-align:middle;">
+                  <h2 class="name text-weight-semibold"><%= @staff_team_schedule.home_team.team_name.upcase %> [ <%= @staff_match_report.score_home_team %> ]</h2>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="profile-info" style="vertical-align:middle;">
+                  <h1 class="name text-weight-semibold" style="margin-top:32px;">vs</h1>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="profile-picture">
+                  <% if @staff_team_schedule.away_team.try(:team_logo?) %>
+                    <%= image_tag(@staff_team_schedule.away_team.team_logo_url(:low_res)) %>
+                  <% else %>
+                    <%= image_tag "default-team-avatar.jpg" %>
+                  <% end %>
+                </div>
+                <div class="profile-info" style="vertical-align:middle;">
+                  <h2 class="name text-weight-semibold"><%= @staff_team_schedule.away_team.team_name.upcase %> [ <%= @staff_match_report.score_away_team %> ]</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <table class="table table-bordered">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-md-4">Bilangan Perlawanan</td>
+                <td><strong><%= @staff_team_schedule.bil_per %></strong></td>
+              </tr>
+              <tr>
+                <td>PBN</td>
+                <td><strong><%= @staff_team_schedule.pbn %></strong></td>
+              </tr>
+              <tr>
+                <td>Tarikh Perlawanan</td>
+                <td><strong><%= @staff_team_schedule.tarikh_perl.strftime("%d %B %Y") %></strong></td>
+              </tr>
+              <tr>
+                <td>Masa Perlawanan</td>
+                <td><strong><%= @staff_team_schedule.masa_perl.strftime("%I:%M %p") %></strong></td>
+              </tr>
+              <tr>
+                <td>Venue</td>
+                <td><strong><%= @staff_team_schedule.venue %></strong></td>
+              </tr>
+              <tr>
+                <td>Cuaca</td>
+                <td><strong><%= @staff_match_report.cuaca %></strong></td>
+              </tr>
+              <tr>
+                <td>Jumlah Penonton</td>
+                <td><strong><%= @staff_match_report.jumlah_penonton %></strong></td>
+              </tr>
+              <tr>
+                <td>Pengadil Perlawanan</td>
+                <td><strong><%= @staff_match_report.pengadil %></strong></td>
+              </tr>
+              <tr>
+                <td>Pemain Terbaik Perlawanan</td>
+                <td><strong><%= @staff_match_report.best_player.player_name %> [ <%= @staff_match_report.best_player.team.team_name %> ]</strong></td>
+              </tr>
+              <tr>
+                <td>Catatan</td>
+                <td><strong><%= @staff_match_report.catatan.present? ? @staff_match_report.catatan : "N/A" %></strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Kembali", staff_zone_group_team_schedules_path(group_id:@group), class: "btn btn-default" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

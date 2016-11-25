@@ -97,8 +97,12 @@
         <div class="panel-footer">
           <%#= link_to "Kemaskini", edit_team_team_player_path(@team_player), class: "btn btn-primary" %>
           <%= link_to "Muat Turun Senarai Pemilihan dalam PDF", selection_staff_zone_group_team_schedules_path(group_id:@staff_team_schedule, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
-          <%= link_to "Kembali", staff_zone_group_team_schedules_path(group_id:@staff_team_schedule), class: "btn btn-default" %>
-          <%= link_to "Keputusan Perlawanan", new_staff_zone_group_team_schedule_match_report_path(team_schedule_id: @staff_team_schedule), :class => "btn btn-primary" %>
+          <%= link_to "Kembali", staff_zone_group_team_schedules_path(group_id:@group), class: "btn btn-default" %>
+          <% if @staff_match_report.exists? %>
+            <%= link_to "Keputusan Perlawanan", staff_zone_group_team_schedule_match_report_path(team_schedule_id: @staff_team_schedule, id: @staff_match_report.ids), :class => "btn btn-primary" %>
+          <% else %>
+            <%= link_to "Masuk Keputusan Perlawanan", new_staff_zone_group_team_schedule_match_report_path(team_schedule_id: @staff_team_schedule), :class => "btn btn-primary" %>
+          <% end %>
         </div>
       </section>
     </div>

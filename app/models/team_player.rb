@@ -8,6 +8,7 @@ class TeamPlayer < ActiveRecord::Base
 
   belongs_to :team
   has_many :staff_match_reports, class_name: 'Staff::MatchReport'
+  has_many :staff_game_statistics
 
   POSITION_OPTIONS = [
     "Penjaga Gol", "Penjaga Gol 1", "Penjaga Gol 2", "Centre Back", "Sweeper", "Full Back", "Wing Back (Kanan)", "Wing Back (Kiri)",

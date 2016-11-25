@@ -1,9 +1,11 @@
 class Staff::MatchReport < ActiveRecord::Base
   belongs_to :staff_team_schedule, class_name: 'Staff::TeamSchedule'
   belongs_to :best_player, foreign_key: 'best_player_id', class_name: 'TeamPlayer'
+  has_many :staff_game_statistics, class_name: 'Staff::GameStatistic', :foreign_key => 'staff_match_report_id'
 
-  validates :jumlah_penonton, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
-  validates :score_home_team, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
-  validates :score_away_team, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
-  validates :jumlah_penonton, numericality: { only_integer: true }, length: { maximum: 12 }, format: { without: /\s/ }
+  accepts_nested_attributes_for :staff_game_statistics, reject_if: :all_blank, allow_destroy: true
+
+  validates_numericality_of :jumlah_penonton
+  validates_numericality_of :score_home_team
+  validates_numericality_of :score_away_team
 end

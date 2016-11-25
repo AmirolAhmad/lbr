@@ -1,0 +1,28 @@
+<div class="nested-fields">
+
+  <div class="col-md-12 form-group">
+    <%= f.label :team_player_id, "Nama Pemain", class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <%= f.collection_select :team_player_id, TeamPlayer.where(team_id: @staff_team_schedule.home_team_id) + TeamPlayer.where(team_id: @staff_team_schedule.away_team_id), :id, :best_player_detail, { prompt: "-- Pilih Pasukan" }, { class: 'form-control populate placeholder', 'data-plugin-selectTwo' => 'data-plugin-selectTwo', 'data-plugin-options' => '{ "placeholder": "Pilih pemain", "allowClear": true }' } %>
+    </div>
+  </div>
+
+  <div class="col-md-6 form-group">
+    <%= f.label :minute, "Minit", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :minute, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="col-md-6 form-group">
+    <%= f.label :kod_id, "Category", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.collection_select :kod_id, Kod.order(:id), :id, :kod_number, {}, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="col-md-12 form-group">
+    <%= link_to_remove_association "Buang", f, class: "btn btn-danger pull-right" %>
+  </div>
+
+</div>

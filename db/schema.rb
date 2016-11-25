@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110015138) do
+ActiveRecord::Schema.define(version: 20161125014155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "game_statistics", force: :cascade do |t|
+    t.integer  "kod_id"
+    t.integer  "staff_match_report_id"
+    t.integer  "team_player_id"
+    t.integer  "team_id"
+    t.integer  "count"
+    t.integer  "minute"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "game_statistics", ["kod_id"], name: "index_game_statistics_on_kod_id", using: :btree
+  add_index "game_statistics", ["staff_match_report_id"], name: "index_game_statistics_on_staff_match_report_id", using: :btree
+  add_index "game_statistics", ["team_id"], name: "index_game_statistics_on_team_id", using: :btree
+  add_index "game_statistics", ["team_player_id"], name: "index_game_statistics_on_team_player_id", using: :btree
+
+  create_table "kods", force: :cascade do |t|
+    t.string   "kod_number"
+    t.string   "kod_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,11 +50,32 @@ ActiveRecord::Schema.define(version: 20161110015138) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "staff_game_statistics", force: :cascade do |t|
+    t.integer  "kod_id"
+    t.integer  "staff_match_report_id"
+    t.integer  "team_player_id"
+    t.integer  "minute"
+    t.integer  "count"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "staff_game_statistics", ["kod_id"], name: "index_staff_game_statistics_on_kod_id", using: :btree
+  add_index "staff_game_statistics", ["staff_match_report_id"], name: "index_staff_game_statistics_on_staff_match_report_id", using: :btree
+  add_index "staff_game_statistics", ["team_player_id"], name: "index_staff_game_statistics_on_team_player_id", using: :btree
+
   create_table "staff_group_teams", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "staff_group_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "perlawanan"
+    t.string   "menang"
+    t.string   "seri"
+    t.string   "kalah"
+    t.string   "gol_bolos"
+    t.string   "gol_masuk"
+    t.string   "mata"
   end
 
   add_index "staff_group_teams", ["staff_group_id"], name: "index_staff_group_teams_on_staff_group_id", using: :btree
@@ -203,7 +247,14 @@ ActiveRecord::Schema.define(version: 20161110015138) do
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "game_statistics", "kods"
+  add_foreign_key "game_statistics", "staff_match_reports"
+  add_foreign_key "game_statistics", "team_players"
+  add_foreign_key "game_statistics", "teams"
   add_foreign_key "profiles", "users"
+  add_foreign_key "staff_game_statistics", "kods"
+  add_foreign_key "staff_game_statistics", "staff_match_reports"
+  add_foreign_key "staff_game_statistics", "team_players"
   add_foreign_key "staff_group_teams", "staff_groups"
   add_foreign_key "staff_group_teams", "teams"
   add_foreign_key "staff_match_reports", "staff_team_schedules"

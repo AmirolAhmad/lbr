@@ -24,6 +24,8 @@ class Staff::TeamSchedulesController < StaffController
   def show
     @group = Staff::Group.find params[:group_id]
     @staff_team_schedule = Staff::TeamSchedule.find params[:id]
+    @staff_match_report = Staff::MatchReport.where(staff_team_schedule_id: @staff_team_schedule)
+    # @staff_match_report = Staff::MatchReport.find(params[:id]).where(staff_team_schedule_id: @staff_team_schedule.id)
   end
 
   def selection

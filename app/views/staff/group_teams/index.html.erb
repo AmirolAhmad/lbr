@@ -30,6 +30,13 @@
               <tr>
                 <th class="col-md-1">Bil</th>
                 <th>Nama Pasukan</th>
+                <th class="col-md-1">P</th>
+                <th class="col-md-1">M</th>
+                <th class="col-md-1">S</th>
+                <th class="col-md-1">K</th>
+                <th class="col-md-1">GM</th>
+                <th class="col-md-1">GB</th>
+                <th class="col-md-1">MT</th>
               </tr>
             </thead>
             <tbody>
@@ -37,6 +44,13 @@
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= group_team.team.team_name %></td>
+                <td><%= group_team.perlawanan %></td>
+                <td><%= group_team.menang %></td>
+                <td><%= group_team.seri %></td>
+                <td><%= group_team.kalah %></td>
+                <td><%= group_team.gol_masuk %></td>
+                <td><%= group_team.gol_bolos %></td>
+                <td><%= group_team.mata %></td>
               </tr>
               <% end %>
             </tbody>
