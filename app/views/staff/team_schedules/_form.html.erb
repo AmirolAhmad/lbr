@@ -51,7 +51,7 @@
 <div class="col-md-6 form-group">
   <%= f.label :masa_perl, "Masa Perlawanan", class: "col-md-4 control-label" %>
   <div class="col-md-8">
-    <%= f.text_field :masa_perl, :class => "form-control timepicker" %>
+    <%= f.text_field :masa_perl, :class => "form-control timepicker", value: unless @staff_team_schedule.masa_perl.nil? then "#{@staff_team_schedule.masa_perl.strftime("%I:%M %p")}" end %>
   </div>
 </div>
 
