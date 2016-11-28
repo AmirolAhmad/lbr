@@ -16,7 +16,7 @@ class TeamOfficial < ActiveRecord::Base
     "Pegawai Pengiring", "Penolong Pegawai Pengiring", "Pegawai Penyelaras", "Penolong Pegawai Penyelaras", "Pegawai Peralatan",
     "Penolong Pegawai Peralatan", "Pegawai Perhubungan", "Penolong Pegawai Perhubungan", "Pegawai Teknikal", "Penolong Pegawai Teknikal",
     "Pegawai Tempat", "Penolong Pegawai Tempat", "Penaung", "Pengarah Teknikal", "Tugas Khas", "Pengawai Keselamatan", "Penolong Pegawai Keselamatan",
-    "Pemandu", "Penolong Pemandu" 
+    "Pemandu", "Penolong Pemandu"
   ]
 
   validates_presence_of :name
@@ -28,6 +28,7 @@ class TeamOfficial < ActiveRecord::Base
   validates :phone_number, numericality: { only_integer: true }, format: { without: /\s/ }, allow_blank: true
 
   default_scope -> { order('team_officials.created_at DESC') }
+  scope :by_state, -> (state_id) { joins(:team).where('teams.state_id = ?', state_id) }
 
   def random_ref_id
     random = ['1'..'9'].map { |i| i.to_a }.flatten

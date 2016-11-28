@@ -28,6 +28,7 @@ class TeamPlayer < ActiveRecord::Base
   validates :jersey_no, numericality: { only_integer: true }, length: { maximum: 3 }, format: { without: /\s/ }
 
   default_scope -> { order('team_players.created_at DESC') }
+  scope :by_state, -> (state_id) { joins(:team).where('teams.state_id = ?', state_id) }
 
   def random_player_ref_id
     random = ['1'..'9'].map { |i| i.to_a }.flatten

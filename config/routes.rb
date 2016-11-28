@@ -20,6 +20,13 @@ Rails.application.routes.draw do
       resources :team_officials
       resources :team_players
     end
+
+    resources :pages, only: :index
+
+    # sort by state
+    get 't/:sort' => 'pages#state', as: 'state_index'
+    get 't/:sort/team_players' => 'pages#team_player', as: 'team_player_state_index'
+    get 't/:sort/team_officials' => 'pages#team_official', as: 'team_official_state_index'
   end
 
   namespace :staff, path: '/submaster' do

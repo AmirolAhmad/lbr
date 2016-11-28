@@ -19,6 +19,7 @@ class Team < ActiveRecord::Base
   scope :by_state, -> (state_id) { where(state_id: state_id) }
   scope :available, -> { joins(:staff_group_teams).where('staff_group_teams.team_id IS NOT null') }
   scope :specific, -> (group_id) { joins(:staff_group_teams).where('staff_group_teams.staff_group_id = ?', group_id) }
+  scope :by_state, -> (state_id) { where(state_id: state_id) }
 
   def random_team_ref_id
     random = ['1'..'9'].map { |i| i.to_a }.flatten

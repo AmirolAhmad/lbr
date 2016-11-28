@@ -1,0 +1,68 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Senarai Pemain Pasukan</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Senarai Pemain Pasukan</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Senarai Pemain Pasukan bagi Negeri <%= @state.name %></h2>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <table class="table table-bordered table-striped mb-none" id="datatable-lbr">
+            <thead>
+              <tr>
+                <th class="col-md-1">Bil</th>
+                <th class="col-md-2">Pasukan</th>
+                <th>Nama</th>
+                <th class="col-md-2">Posisi</th>
+                <th class="col-md-1">No Jersi</th>
+                <th class="col-md-1">Umur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @team_players.each_with_index do |tp, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= tp.team.team_name %></td>
+                <td>
+                  <% if tp.try(:player_picture?) %>
+                    <%= image_tag(tp.player_picture_url(:standar), class: 'img-circle', height: 15) %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: 'img-circle', height: 15 %>
+                  <% end %>
+                  <%= tp.player_name.upcase %>
+                </td>
+                <td><%= tp.position.upcase %></td>
+                <td><%= tp.jersey_no %></td>
+                <td><%= tp.age %> tahun</td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Kembali ke Senarai Pasukan", admin_state_index_path, class: "btn btn-default" %>
+          <%#= link_to "Muat Turun dalam PDF", admin_team_team_players_path(@team_players, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

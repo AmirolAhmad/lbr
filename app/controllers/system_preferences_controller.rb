@@ -20,6 +20,9 @@ class SystemPreferencesController < ApplicationController
     end
   end
 
+  def state
+  end
+
   private
 
     def system_preference_params
