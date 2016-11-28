@@ -46,6 +46,26 @@ class Staff::TeamSchedulesController < StaffController
     end
   end
 
+  def edit
+    @group = Staff::Group.find params[:group_id]
+    @staff_team_schedule = Staff::TeamSchedule.find params[:id]
+    if @staff_team_schedule
+      render
+    else
+      redirect_to staff_zone_group_team_schedule_path(@staff_team_schedule), notice: "Maaf! Jadual perlawanan tidak dijumpai!"
+    end
+  end
+
+  def update
+    @group = Staff::Group.find params[:group_id]
+    @staff_team_schedule = Staff::TeamSchedule.find params[:id]
+    if @staff_team_schedule.update_attributes staff_team_schedule_params
+      redirect_to staff_zone_group_team_schedule_path(id:@staff_team_schedule), notice: "Jadual perlawanan berjaya dikemaskini."
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def staff_team_schedule_params

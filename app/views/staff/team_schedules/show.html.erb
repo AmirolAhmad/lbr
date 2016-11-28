@@ -103,6 +103,7 @@
           <% else %>
             <%= link_to "Masuk Keputusan Perlawanan", new_staff_zone_group_team_schedule_match_report_path(team_schedule_id: @staff_team_schedule), :class => "btn btn-primary" %>
           <% end %>
+          <%= link_to "Kemaskini Jadual", edit_staff_zone_group_team_schedule_path(id:@staff_team_schedule), class: "btn btn-warning pull-right" %>
         </div>
       </section>
     </div>

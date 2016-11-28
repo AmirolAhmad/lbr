@@ -44,7 +44,7 @@
 <div class="col-md-6 form-group">
   <%= f.label :tarikh_perl, "Tarikh Perlawanan", class: "col-md-4 control-label" %>
   <div class="col-md-8">
-    <%= f.text_field :tarikh_perl, :class => "form-control datepicker" %>
+    <%= f.text_field :tarikh_perl, :class => "form-control datepicker", value: unless @staff_team_schedule.tarikh_perl.nil? then "#{@staff_team_schedule.tarikh_perl.strftime("%Y-%m-%d")}" end %>
   </div>
 </div>
 
