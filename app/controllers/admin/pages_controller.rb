@@ -13,10 +13,30 @@ class Admin::PagesController < AdminController
 
   def team_player
     @team_players = TeamPlayer.by_state(@state.id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = StateTeamPlayerPdf.new(@team_players, view_context)
+        send_data pdf.render, filename:
+        "TeamPlayers-#{@state.name}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
   end
 
   def team_official
     @team_officials = TeamOfficial.by_state(@state.id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = StateTeamOfficialPdf.new(@team_officials, view_context)
+        send_data pdf.render, filename:
+        "TeamOfficials-#{@state.name}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end
   end
 
   private

@@ -58,6 +58,7 @@
         </div>
         <div class="panel-footer">
           <%= link_to "Kembali ke Data Pasukan", admin_state_index_path, class: "btn btn-default" %>
+          <%= link_to "Muat Turun dalam PDF", admin_team_official_state_index_path(@state, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
         </div>
       </section>
     </div>
