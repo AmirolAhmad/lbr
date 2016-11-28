@@ -31,6 +31,8 @@
                 <th class="col-md-1">Bil</th>
                 <th class="col-md-4">Nama Pasukan</th>
                 <th class="col-md-2">ID Pasukan</th>
+                <th class="col-md-2">Jumlah Pemain</th>
+                <th class="col-md-2">Jumlah Pegawai</th>
               </tr>
             </thead>
             <tbody>
@@ -39,6 +41,8 @@
                 <td><%= index + 1 %></td>
                 <td><%= team.team_name.upcase %></td>
                 <td><%= team.team_ref_id %></td>
+                <td><%= TeamPlayer.where(team: team).count %></td>
+                <td><%= TeamOfficial.where(team: team).count %></td>
               </tr>
               <% end %>
             </tbody>
@@ -46,8 +50,8 @@
           <!-- Main Content End -->
         </div>
         <div class="panel-footer">
-          <%= link_to "Senarai Pemain", admin_team_player_state_index_path, class: "btn btn-primary" %>
-          <%= link_to "Senarai Pegawai", admin_team_official_state_index_path, class: "btn btn-default" %>
+          <%= link_to "Senarai Semua Pemain", admin_team_player_state_index_path, class: "btn btn-primary" %>
+          <%= link_to "Senarai Semua Pegawai", admin_team_official_state_index_path, class: "btn btn-default" %>
           <%= link_to "Kembali", admin_pages_path, class: "btn btn-default pull-right" %>
         </div>
       </section>
