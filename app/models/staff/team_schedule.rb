@@ -9,6 +9,8 @@ class Staff::TeamSchedule < ActiveRecord::Base
 
   validates_presence_of :home_team_id, :away_team_id, :bil_per, :pbn, :tarikh_perl, :masa_perl, :venue
 
+  default_scope -> { order('staff_team_schedules.created_at ASC') }
+
   def set_schedule_status
     self.status ||= :incoming
   end

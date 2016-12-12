@@ -80,23 +80,23 @@
               </tr>
               <tr>
                 <td>Venue</td>
-                <td><strong><%= @staff_team_schedule.venue %></strong></td>
+                <td><strong><%= @staff_team_schedule.venue.present? ? @staff_team_schedule.venue : "N/A" %></strong></td>
               </tr>
               <tr>
                 <td>Cuaca</td>
-                <td><strong><%= @staff_match_report.cuaca %></strong></td>
+                <td><strong><%= @staff_match_report.cuaca.present? ? @staff_team_schedule.cuaca : "N/A" %></strong></td>
               </tr>
               <tr>
                 <td>Jumlah Penonton</td>
-                <td><strong><%= @staff_match_report.jumlah_penonton %></strong></td>
+                <td><strong><%= @staff_match_report.jumlah_penonton.present? ? @staff_match_report.jumlah_penonton : "N/A" %></strong></td>
               </tr>
               <tr>
                 <td>Pengadil Perlawanan</td>
-                <td><strong><%= @staff_match_report.pengadil %></strong></td>
+                <td><strong><%= @staff_match_report.pengadil.present? ? @staff_match_report.pengadil : "N/A" %></strong></td>
               </tr>
               <tr>
                 <td>Pemain Terbaik Perlawanan</td>
-                <td><strong><%= @staff_match_report.best_player.player_name %> [ <%= @staff_match_report.best_player.team.team_name %> ]</strong></td>
+                <td><strong><%= @staff_match_report.best_player.present? ? @staff_match_report.best_player.player_name : "N/A" %> <%= @staff_match_report.best_player.present? ? "[ "+@staff_match_report.best_player.team.team_name+" ]" : nil %></strong></td>
               </tr>
               <tr>
                 <td>Catatan</td>
@@ -108,6 +108,7 @@
         </div>
         <div class="panel-footer">
           <%= link_to "Kembali", staff_zone_group_team_schedules_path(group_id:@group), class: "btn btn-default" %>
+          <%= link_to "Kemaskini Keputusan Perlawanan", edit_staff_zone_group_team_schedule_match_report_path(id: @staff_match_report), :class => "btn btn-primary" %>
         </div>
       </section>
     </div>

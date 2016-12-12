@@ -5,7 +5,8 @@ class Staff::MatchReport < ActiveRecord::Base
 
   accepts_nested_attributes_for :staff_game_statistics, reject_if: :all_blank, allow_destroy: true
 
-  validates_numericality_of :jumlah_penonton
+  validates_presence_of :score_home_team, :score_away_team
+  validates_numericality_of :jumlah_penonton, :allow_blank => true
   validates_numericality_of :score_home_team
   validates_numericality_of :score_away_team
 end

@@ -21,6 +21,14 @@ class Staff::GroupTeamsController < StaffController
     end
   end
 
+  def edit
+    #code
+  end
+
+  def update
+    #code
+  end
+
   private
 
     def team_staff_group_params

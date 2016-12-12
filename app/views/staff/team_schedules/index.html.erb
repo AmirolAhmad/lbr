@@ -34,7 +34,7 @@
                 <th>Nama Pasukan (Away)</th>
                 <th class="col-md-1">Tarikh Perl</th>
                 <th class="col-md-1">Masa Perl</th>
-                <th class="col-md-1">Status</th>
+                <!-- <th class="col-md-1">Status</th> -->
                 <th></th>
               </tr>
             </thead>
@@ -47,11 +47,11 @@
                 <td><%= team_schedule.away_team.team_name %></td>
                 <td><%= team_schedule.tarikh_perl.strftime("%d/%m/%Y") %></td>
                 <td><%= team_schedule.masa_perl.strftime("%I:%M %p") %></td>
-                <td>
-                  <span class="label <%= team_schedule.incoming? ? 'label-warning' : team_schedule.played? ? 'label-primary' : 'label-danger' %>">
-                    <%= team_schedule.status.upcase %>
+                <!-- <td>
+                  <span class="label <%#= team_schedule.incoming? ? 'label-warning' : team_schedule.played? ? 'label-primary' : 'label-danger' %>">
+                    <%#= team_schedule.status.upcase %>
                   </span>
-                </td>
+                </td> -->
                 <td><%= link_to "detail", staff_zone_group_team_schedule_path(id:team_schedule) %></td>
               </tr>
               <% end %>
