@@ -9,4 +9,5 @@ class Staff::MatchReport < ActiveRecord::Base
   validates_numericality_of :jumlah_penonton, :allow_blank => true
   validates_numericality_of :score_home_team
   validates_numericality_of :score_away_team
+  
 end

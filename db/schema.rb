@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125015526) do
+ActiveRecord::Schema.define(version: 20161128190605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,15 +67,15 @@ ActiveRecord::Schema.define(version: 20161125015526) do
   create_table "staff_group_teams", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "staff_group_id"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.string   "perlawanan",     default: "---\n:default: 0\n"
-    t.string   "menang",         default: "---\n:default: 0\n"
-    t.string   "seri",           default: "---\n:default: 0\n"
-    t.string   "kalah",          default: "---\n:default: 0\n"
-    t.string   "gol_bolos",      default: "---\n:default: 0\n"
-    t.string   "gol_masuk",      default: "---\n:default: 0\n"
-    t.string   "mata",           default: "---\n:default: 0\n"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "perlawanan",     default: 0
+    t.integer  "menang",         default: 0
+    t.integer  "seri",           default: 0
+    t.integer  "kalah",          default: 0
+    t.integer  "gol_bolos",      default: 0
+    t.integer  "gol_masuk",      default: 0
+    t.integer  "mata",           default: 0
   end
 
   add_index "staff_group_teams", ["staff_group_id"], name: "index_staff_group_teams_on_staff_group_id", using: :btree
