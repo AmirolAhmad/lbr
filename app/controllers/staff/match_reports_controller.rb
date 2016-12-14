@@ -41,8 +41,21 @@ class Staff::MatchReportsController < StaffController
         mata_home = @siapa1.mata
         mata_away = @siapa2.mata
 
-        gm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_home_team
-        gb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_away_team
+        # gm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_home_team
+
+        rm = @staff_match_report
+        sm = rm.staff_team_schedule.home_team_id = @siapa1.team_id
+        tm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sm)
+        gm = tm.first.score_home_team
+
+        # gb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_away_team
+
+        rb = @staff_match_report
+        sb = rb.staff_team_schedule.home_team_id = @siapa1.team_id
+        tb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sb)
+        gb = tb.first.score_away_team
+
+
 
         @siapa1.update(gol_masuk: current_home_gm += gm)
         @siapa1.update(gol_bolos: current_home_gb += gb)
