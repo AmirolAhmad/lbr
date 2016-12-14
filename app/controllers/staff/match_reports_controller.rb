@@ -51,7 +51,7 @@ class Staff::MatchReportsController < StaffController
         # gb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_away_team
 
         rb = @staff_match_report
-        sb = rb.staff_team_schedule.home_team_id = @siapa2.team_id
+        sb = rb.staff_team_schedule.home_team_id = @siapa1.team_id
         tb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sb)
         gb = tb.first.score_away_team
 
