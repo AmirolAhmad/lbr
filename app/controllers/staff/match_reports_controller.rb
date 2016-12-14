@@ -34,8 +34,8 @@ class Staff::MatchReportsController < StaffController
         perlawanan_away = @siapa2.perlawanan
         menang_home = @siapa1.menang
         menang_away = @siapa2.menang
-        kalah_home = @siapa1.menang
-        kalah_away = @siapa2.menang
+        kalah_home = @siapa1.kalah
+        kalah_away = @siapa2.kalah
         seri_home = @siapa1.seri
         seri_away = @siapa2.seri
         mata_home = @siapa1.mata
@@ -46,16 +46,16 @@ class Staff::MatchReportsController < StaffController
         rm = @staff_match_report
         sm = rm.staff_team_schedule.home_team_id = @siapa1.team_id
         tm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sm)
-        gm = tm.first.score_home_team
+        gm = tm.last.score_home_team
 
         # gb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_away_team
 
         rb = @staff_match_report
         sb = rb.staff_team_schedule.home_team_id = @siapa1.team_id
         tb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sb)
-        gb = tb.first.score_away_team
+        gb = tb.last.score_away_team
 
-
+        # byebug
 
         @siapa1.update(gol_masuk: current_home_gm += gm)
         @siapa1.update(gol_bolos: current_home_gb += gb)
@@ -64,15 +64,17 @@ class Staff::MatchReportsController < StaffController
         @siapa1.update(perlawanan: perlawanan_home += 1)
         @siapa2.update(perlawanan: perlawanan_away += 1)
 
-        if @siapa1.gol_masuk > @siapa1.gol_bolos
+        if gm > gb
           @siapa1.update(menang: menang_home += 1)
           @siapa1.update(mata: mata_home += 3)
           @siapa2.update(kalah: kalah_away += 1)
-        elsif @siapa1.gol_masuk < @siapa1.gol_bolos
+          @siapa2.update(mata: mata_away += 0)
+        elsif gm < gb
           @siapa1.update(kalah: kalah_home += 1)
+          @siapa1.update(mata: mata_home += 0)
           @siapa2.update(menang: menang_away += 1)
           @siapa2.update(mata: mata_away += 3)
-        elsif @siapa1.gol_masuk == @siapa1.gol_bolos
+        elsif gm == gb
           @siapa1.update(seri: seri_home += 1)
           @siapa2.update(seri: seri_away += 1)
           @siapa1.update(mata: mata_home += 1)
