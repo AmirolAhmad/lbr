@@ -26,7 +26,7 @@
         <div class="panel-body">
           <!-- Main Content Start -->
           <%= form_for @team_player, url: team_team_players_path, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
-            <%= render partial: 'form', locals: {f: f, post: @team_player} %>
+            <%= render partial: 'new_form', locals: {f: f, post: @team_player} %>
           <% end %>
           <!-- Main Content End -->
         </div>

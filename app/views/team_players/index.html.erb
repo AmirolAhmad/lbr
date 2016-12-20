@@ -57,12 +57,16 @@
                       <%= link_to 'Mark reject',mark_reject_team_team_player_path(tm), method: :patch, class: "btn btn-xs btn-warning" %>
                     <% elsif tm.rejected? %>
                         <span class="label label-danger"><%= tm.status.upcase %></span>
+                    <% elsif tm.newly_added? %>
+                        <span class="label label-success"><%= tm.status.upcase %></span>
                     <% end %>
                   <% else %>
                     <% if tm.registered? %>
                       <span class="label label-primary"><%= tm.status.upcase %></span>
                     <% elsif tm.rejected? %>
                         <span class="label label-danger"><%= tm.status.upcase %></span>
+                    <% elsif tm.newly_added? %>
+                        <span class="label label-success"><%= tm.status.upcase %></span>
                     <% end %>
                   <% end %>
                 </td>
@@ -75,9 +79,11 @@
         </div>
         <%# if !TeamPlayer.exists?("team_id" => "#{current_user.team.id}") %>
         <div class="panel-footer">
-          <%= link_to "Muat Turun dalam PDF", team_team_players_path(@team, :format => "pdf"), :class => "btn btn-primary", :target => "_blank" %>
+          <%= link_to "Muat Turun dalam PDF", team_team_players_path(@team, :format => "pdf"), :class => "btn btn-success", :target => "_blank" %>
           Jumlah pemain dibuang untuk New Open Window : <%= @team_players.where(status: 1).count %> orang (Nota: Had pertukaran pemain tidak lebih dari 5 orang)
-          <!-- <%#= link_to "Daftar Data Pemain", new_team_team_player_path, class: "btn btn-primary" %> -->
+          <% if @team_players.where(status: 3).count <= @team_players.where(status: 1).count && @team_players.where(status: 1).count != @team_players.where(status: 3).count %>
+            <%= link_to "Daftar Data Pemain", new_team_team_player_path, class: "btn btn-primary" %>
+          <% end %>
         </div>
         <%# end %>
       </section>

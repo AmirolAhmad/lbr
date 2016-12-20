@@ -1,5 +1,5 @@
 class TeamPlayer < ActiveRecord::Base
-  enum status: [:registered, :rejected, :in_review]
+  enum status: [:registered, :rejected, :in_review, :newly_added]
   mount_uploader :player_picture, PlayerPictureUploader
   mount_uploader :ic_picture, PlayerPictureUploader
 
@@ -43,7 +43,8 @@ class TeamPlayer < ActiveRecord::Base
   end
 
   def set_player_status
-    self.status ||= :registered
+    # self.status ||= :registered
+    self.status ||= :newly_added
   end
 
   def best_player_detail

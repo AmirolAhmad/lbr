@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     # de-activate new and edit player
     # resources :team_players, only: [:index, :show], except: [:new, :create, :edit, :update]
     # activate edit player only
-    resources :team_players, only: [:index, :show, :edit, :update], except: [:new, :create] do
+    resources :team_players, only: [:index, :show, :edit, :update, :new, :create] do
       member do
         patch :mark_reject
       end
