@@ -14,7 +14,7 @@
 <div class="form-group">
   <%= f.label :player_name, "Nama Pemain", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :player_name, :class => "form-control" %>
+    <%= f.text_field :player_name, :class => "form-control", readonly: true %>
   </div>
 </div>
 
@@ -39,7 +39,7 @@
 <div class="form-group">
   <%= f.label :ic_number, "No Kad Pengenalan", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :ic_number, :class => "form-control" %>
+    <%= f.text_field :ic_number, :class => "form-control", readonly: true %>
     <span class="help-block">
       <small>Tanpa '-'. Contoh: 860704236233</small>
     </span>
@@ -65,7 +65,7 @@
 <div class="form-group">
   <%= f.label :dob, "Tarikh Lahir", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "tttt/bb/hh" %>
+    <%= f.text_field :dob, :class => "form-control datepicker", placeholder: "tttt/bb/dd", value: unless @team_player.dob.nil? then "#{@team_player.dob.strftime("%Y-%m-%d")}" end, readonly: true %>
   </div>
 </div>
 
@@ -79,7 +79,7 @@
 <div class="form-group">
   <%= f.label :jersey_no, "No Jersi", class: "col-md-3 control-label" %>
   <div class="col-md-6">
-    <%= f.text_field :jersey_no, :class => "form-control" %>
+    <%= f.text_field :jersey_no, :class => "form-control", readonly: true %>
     <span class="help-block">
       <small>Bawah 21 tahun, hendaklah menggunakan no 51 dan ke atas</small>
     </span>

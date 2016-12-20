@@ -61,7 +61,9 @@ Rails.application.routes.draw do
     # activate new registration player
     # resources :team_players, only: [:index, :new, :create, :show, :edit, :update] do
     # de-activate new and edit player
-    resources :team_players, only: [:index, :show], except: [:new, :create, :edit, :update]
+    # resources :team_players, only: [:index, :show], except: [:new, :create, :edit, :update]
+    # activate edit player only
+    resources :team_players, only: [:index, :show, :edit, :update], except: [:new, :create]
   end
   resource :team_config, only: [:show, :new, :create]
   resource :state_config, only: [:show, :new, :create]
