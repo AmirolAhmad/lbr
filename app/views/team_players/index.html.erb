@@ -32,6 +32,7 @@
                 <th class="col-md-4">Nama</th>
                 <th class="col-md-2">ID Pemain</th>
                 <th class="col-md-2">Posisi</th>
+                <th class="col-md-1">Status</th>
                 <th class="col-md-2"></th>
               </tr>
             </thead>
@@ -49,6 +50,22 @@
                 </td>
                 <td><%= tm.ref_id %></td>
                 <td><%= tm.position.upcase %></td>
+                <td>
+                  <% if @team_players.where(status: 1).count <= 5 %>
+                    <% if tm.registered? %>
+                      <span class="label label-primary"><%= tm.status.upcase %></span>
+                      <%= link_to 'Mark reject',mark_reject_team_team_player_path(tm), method: :patch, class: "btn btn-xs btn-warning" %>
+                    <% elsif tm.rejected? %>
+                        <span class="label label-danger"><%= tm.status.upcase %></span>
+                    <% end %>
+                  <% else %>
+                    <% if tm.registered? %>
+                      <span class="label label-primary"><%= tm.status.upcase %></span>
+                    <% elsif tm.rejected? %>
+                        <span class="label label-danger"><%= tm.status.upcase %></span>
+                    <% end %>
+                  <% end %>
+                </td>
                 <td><%= link_to "Lihat Data", team_team_player_path(tm) %></td>
               </tr>
               <% end %>
@@ -59,6 +76,7 @@
         <%# if !TeamPlayer.exists?("team_id" => "#{current_user.team.id}") %>
         <div class="panel-footer">
           <%= link_to "Muat Turun dalam PDF", team_team_players_path(@team, :format => "pdf"), :class => "btn btn-primary", :target => "_blank" %>
+          Jumlah pemain dibuang untuk New Open Window : <%= @team_players.where(status: 1).count %> orang (Nota: Had pertukaran pemain tidak lebih dari 5 orang)
           <!-- <%#= link_to "Daftar Data Pemain", new_team_team_player_path, class: "btn btn-primary" %> -->
         </div>
         <%# end %>

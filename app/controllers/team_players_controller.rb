@@ -59,6 +59,12 @@ class TeamPlayersController < ApplicationController
     @team_player = TeamPlayer.find params[:id]
   end
 
+  def mark_reject
+    @team_player = TeamPlayer.find(params[:id])
+    @team_player.update_attributes(status: 1)
+    redirect_to team_team_players_path
+  end
+
   private
 
     def team_player_params
