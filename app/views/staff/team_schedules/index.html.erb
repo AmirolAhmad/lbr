@@ -34,24 +34,25 @@
                 <th>Nama Pasukan (Away)</th>
                 <th class="col-md-1">Tarikh Perl</th>
                 <th class="col-md-1">Masa Perl</th>
-                <!-- <th class="col-md-1">Status</th> -->
+                <th class="col-md-1">Status</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <% @staff_team_schedules.each_with_index do |team_schedule,index| %>
+              <% @st = Staff::MatchReport.find_by_staff_team_schedule_id team_schedule %>
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= team_schedule.bil_per.upcase %></td>
-                <td><%= team_schedule.home_team.team_name %></td>
-                <td><%= team_schedule.away_team.team_name %></td>
+                <td>[ <%= @st.score_home_team if @st.present? %> ] <%= team_schedule.home_team.team_name %></td>
+                <td>[ <%= @st.score_away_team if @st.present? %> ] <%= team_schedule.away_team.team_name %></td>
                 <td><%= team_schedule.tarikh_perl.strftime("%d/%m/%Y") %></td>
                 <td><%= team_schedule.masa_perl.strftime("%I:%M %p") %></td>
-                <!-- <td>
-                  <span class="label <%#= team_schedule.incoming? ? 'label-warning' : team_schedule.played? ? 'label-primary' : 'label-danger' %>">
-                    <%#= team_schedule.status.upcase %>
-                  </span>
-                </td> -->
+                <% if @st.present? %>
+                <td><span class="label label-primary">bermain</span></td>
+                <% else %>
+                <td><span class="label label-warning">menunggu</span></td>
+                <% end %>
                 <td><%= link_to "detail", staff_zone_group_team_schedule_path(id:team_schedule) %></td>
               </tr>
               <% end %>

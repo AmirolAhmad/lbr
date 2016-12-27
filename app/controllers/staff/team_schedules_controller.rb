@@ -1,6 +1,7 @@
 class Staff::TeamSchedulesController < StaffController
   def index
     @group = Staff::Group.find params[:group_id]
+    @staff_match_report = Staff::MatchReport.where(staff_team_schedule_id: params[:id])
     @staff_team_schedules = Staff::TeamSchedule.where(staff_group_id: @group)
   end
 
