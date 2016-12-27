@@ -4,6 +4,7 @@ class Staff::GroupTeam < ActiveRecord::Base
   has_many :staff_team_schedules, class_name: 'Staff::TeamSchedule'
 
   default_scope -> { order('staff_group_teams.mata DESC') }
+  scope :by_gf, -> { order ('(staff_group_teams.gol_masuk) > (staff_group_teams.gol_bolos) ASC')}
 
   # class method
   def self.calc_home_gol_statistic

@@ -1,7 +1,7 @@
 class Staff::GroupTeamsController < StaffController
   def index
     @group = Staff::Group.find params[:group_id]
-    @staff_group_teams = Staff::GroupTeam.where(staff_group_id: @group)
+    @staff_group_teams = Staff::GroupTeam.by_gf.where(staff_group_id: @group)
   end
 
   def new
