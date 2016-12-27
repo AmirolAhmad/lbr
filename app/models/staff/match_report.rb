@@ -1,4 +1,5 @@
 class Staff::MatchReport < ActiveRecord::Base
+  include ActiveModel::Dirty
   belongs_to :staff_team_schedule, class_name: 'Staff::TeamSchedule'
   belongs_to :best_player, foreign_key: 'best_player_id', class_name: 'TeamPlayer'
   has_many :staff_game_statistics, class_name: 'Staff::GameStatistic', :foreign_key => 'staff_match_report_id'
@@ -9,5 +10,5 @@ class Staff::MatchReport < ActiveRecord::Base
   validates_numericality_of :jumlah_penonton, :allow_blank => true
   validates_numericality_of :score_home_team
   validates_numericality_of :score_away_team
-  
+
 end

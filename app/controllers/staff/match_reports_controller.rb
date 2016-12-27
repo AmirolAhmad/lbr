@@ -41,21 +41,15 @@ class Staff::MatchReportsController < StaffController
         mata_home = @siapa1.mata
         mata_away = @siapa2.mata
 
-        # gm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_home_team
-
         rm = @staff_match_report
         sm = rm.staff_team_schedule.home_team_id = @siapa1.team_id
         tm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sm)
         gm = tm.last.score_home_team
 
-        # gb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", @siapa1).first.score_away_team
-
         rb = @staff_match_report
         sb = rb.staff_team_schedule.home_team_id = @siapa1.team_id
         tb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sb)
         gb = tb.last.score_away_team
-
-        # byebug
 
         @siapa1.update(gol_masuk: current_home_gm += gm)
         @siapa1.update(gol_bolos: current_home_gb += gb)
@@ -102,11 +96,81 @@ class Staff::MatchReportsController < StaffController
     @group = Staff::Group.find params[:group_id]
     @staff_team_schedule = Staff::TeamSchedule.find params[:team_schedule_id]
     @staff_match_report = Staff::MatchReport.find params[:id]
-    if @staff_match_report.update_attributes staff_match_report_params
-      redirect_to staff_zone_group_team_schedule_match_report_path(id:@staff_match_report), notice: "Keputusan perlawanan berjaya dikemaskini."
-    else
-      render 'edit'
-    end
+    ###############################################
+
+    @siapa1 = Staff::GroupTeam.find_by_team_id (@staff_team_schedule.home_team_id)
+    @siapa2 = Staff::GroupTeam.find_by_team_id (@staff_team_schedule.away_team_id)
+
+      current_home_gm = @siapa1.gol_masuk
+      current_home_gb = @siapa1.gol_bolos
+      current_away_gm = @siapa2.gol_masuk
+      current_away_gb = @siapa2.gol_bolos
+      perlawanan_home = @siapa1.perlawanan
+      perlawanan_away = @siapa2.perlawanan
+      menang_home = @siapa1.menang
+      menang_away = @siapa2.menang
+      kalah_home = @siapa1.kalah
+      kalah_away = @siapa2.kalah
+      seri_home = @siapa1.seri
+      seri_away = @siapa2.seri
+      mata_home = @siapa1.mata
+      mata_away = @siapa2.mata
+
+      rm = @staff_match_report
+      sm = rm.staff_team_schedule.home_team_id = @siapa1.team_id
+      tm = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sm)
+      gm = tm.last.score_home_team
+
+      rb = @staff_match_report
+      sb = rb.staff_team_schedule.home_team_id = @siapa1.team_id
+      tb = Staff::MatchReport.joins(:staff_team_schedule).where("home_team_id = ?", sb)
+      gb = tb.last.score_away_team
+
+      # keputusan asal home = 2
+      # edit keputusan home = 3
+      # current_home_gm = 3
+      # current_home_gb = 2
+
+      # keputusan asal away = 3
+      # edit keputusan away = 4
+      # current_away_gm = 3
+      # current_away_gb = 2
+
+      # 3 > 2 home
+      if staff_match_report_params[:score_home_team].to_i > @staff_match_report.score_home_team_was
+        scgm = staff_match_report_params[:score_home_team].to_i - @staff_match_report.score_home_team_was
+
+        @siapa1.update(gol_masuk: current_home_gm += scgm)
+        @siapa2.update(gol_bolos: current_away_gb += scgm)
+      end
+      # 3 < 2 home
+      if staff_match_report_params[:score_home_team].to_i < @staff_match_report.score_home_team_was
+        scgm = @staff_match_report.score_home_team_was - staff_match_report_params[:score_home_team].to_i
+
+        @siapa1.update(gol_masuk: current_home_gm -= scgm)
+        @siapa2.update(gol_bolos: current_away_gb -= scgm)
+      end
+
+      if staff_match_report_params[:score_away_team].to_i > @staff_match_report.score_away_team_was
+        scgm = staff_match_report_params[:score_away_team].to_i - @staff_match_report.score_away_team_was
+
+        @siapa2.update(gol_masuk: current_away_gm += scgm)
+        @siapa1.update(gol_bolos: current_home_gb += scgm)
+      end
+      # 3 < 2 home
+      if staff_match_report_params[:score_away_team].to_i < @staff_match_report.score_away_team_was
+        scgm = @staff_match_report.score_away_team_was - staff_match_report_params[:score_away_team].to_i
+
+        @siapa2.update(gol_masuk: current_away_gm -= scgm)
+        @siapa1.update(gol_bolos: current_home_gb -= scgm)
+      end
+
+      #############################
+      if @staff_match_report.update_attributes staff_match_report_params
+        redirect_to staff_zone_group_team_schedule_match_report_path(id:@staff_match_report), notice: "Keputusan perlawanan berjaya dikemaskini."
+      else
+        render 'edit'
+      end
   end
 
   private
