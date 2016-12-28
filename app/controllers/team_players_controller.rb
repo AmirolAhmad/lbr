@@ -46,6 +46,12 @@ class TeamPlayersController < ApplicationController
     end
   end
 
+  def change_players
+    @all = TeamPlayer.where("team_id" => "#{current_user.team.id}")
+    @reject_players = @all.where("status = ?", 1)
+    @new_players = @all.where("status = ?", 3)
+  end
+
   def update
     @team_player = TeamPlayer.find(params[:id])
     if @team_player.update_attributes team_player_params

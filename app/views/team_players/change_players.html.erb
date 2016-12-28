@@ -1,0 +1,131 @@
+<section role="main" class="content-body">
+  <header class="page-header">
+    <h2>Senarai Pemain Pasukan Open Window</h2>
+    <div class="right-wrapper pull-right">
+      <ol class="breadcrumbs">
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+        </li>
+        <li>
+          <span>Senarai Pemain Pasukan Open Window</span>
+        </li>
+      </ol>
+      <a class="sidebar-right-toggle" data-open="sidebar-right">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </div>
+  </header>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Senarai Pemain Dibuang</h2>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <table class="table table-bordered table-striped mb-none" id="datatable-lbr">
+            <thead>
+              <tr>
+                <th class="col-md-1">Bil</th>
+                <th class="col-md-4">Nama</th>
+                <th class="col-md-1">ID Pemain</th>
+                <th class="col-md-2">Posisi</th>
+                <th class="col-md-1">Status</th>
+                <th class="col-md-1">Tarikh Kemaskini</th>
+                <th class="col-md-1"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @reject_players.each_with_index do |tm,index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td>
+                  <% if tm.try(:player_picture?) %>
+                    <%= image_tag(tm.player_picture_url(:standar), class: 'img-circle', height: 15) %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: 'img-circle', height: 15 %>
+                  <% end %>
+                  <%= tm.player_name.upcase %>
+                </td>
+                <td><%= tm.ref_id %></td>
+                <td><%= tm.position.upcase %></td>
+                <td>
+                  <% if tm.registered? %>
+                    <span class="label label-primary"><%= tm.status.upcase %></span>
+                  <% elsif tm.rejected? %>
+                      <span class="label label-danger"><%= tm.status.upcase %></span>
+                  <% elsif tm.newly_added? %>
+                      <span class="label label-success"><%= tm.status.upcase %></span>
+                  <% end %>
+                </td>
+                <td><%= tm.updated_at.strftime("%d/%m/%Y") %></td>
+                <td><%= link_to "Lihat Data", team_team_player_path(tm) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <section class="panel">
+        <header class="panel-heading">
+          <h2 class="panel-title">Senarai Pemain Baru Dimasukkan</h2>
+        </header>
+        <div class="panel-body">
+          <!-- Main Content Start -->
+          <table class="table table-bordered table-striped mb-none" id="datatable-lbr">
+            <thead>
+              <tr>
+                <th class="col-md-1">Bil</th>
+                <th class="col-md-4">Nama</th>
+                <th class="col-md-1">ID Pemain</th>
+                <th class="col-md-2">Posisi</th>
+                <th class="col-md-1">Status</th>
+                <th class="col-md-1">Tarikh Kemaskini</th>
+                <th class="col-md-1"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @new_players.each_with_index do |tm,index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td>
+                  <% if tm.try(:player_picture?) %>
+                    <%= image_tag(tm.player_picture_url(:standar), class: 'img-circle', height: 15) %>
+                  <% else %>
+                    <%= image_tag "default-avatar.png", class: 'img-circle', height: 15 %>
+                  <% end %>
+                  <%= tm.player_name.upcase %>
+                </td>
+                <td><%= tm.ref_id %></td>
+                <td><%= tm.position.upcase %></td>
+                <td>
+                  <% if tm.registered? %>
+                    <span class="label label-primary"><%= tm.status.upcase %></span>
+                  <% elsif tm.rejected? %>
+                      <span class="label label-danger"><%= tm.status.upcase %></span>
+                  <% elsif tm.newly_added? %>
+                      <span class="label label-success"><%= tm.status.upcase %></span>
+                  <% end %>
+                </td>
+                <td><%= tm.updated_at.strftime("%d/%m/%Y") %></td>
+                <td><%= link_to "Lihat Data", team_team_player_path(tm) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <!-- Main Content End -->
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Kembali", team_team_players_path, class: "btn btn-primary" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

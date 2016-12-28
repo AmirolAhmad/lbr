@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         patch :mark_reject
       end
     end
+    get 'cs/change_players' => 'team_players#change_players'
   end
   resource :team_config, only: [:show, :new, :create]
   resource :state_config, only: [:show, :new, :create]
