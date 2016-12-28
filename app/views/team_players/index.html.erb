@@ -51,10 +51,10 @@
                 <td><%= tm.ref_id %></td>
                 <td><%= tm.position.upcase %></td>
                 <td>
-                  <% if @team_players.where(status: 1).count <= 5 %>
+                  <% if @team_players.where(status: 1).count < 5 %>
                     <% if tm.registered? %>
                       <span class="label label-primary"><%= tm.status.upcase %></span>
-                      <%= link_to 'Mark reject',mark_reject_team_team_player_path(tm), method: :patch, class: "btn btn-xs btn-warning" %>
+                      <%= link_to 'Mark Reject',mark_reject_team_team_player_path(tm), method: :patch, class: "btn btn-xs btn-warning" %>
                     <% elsif tm.rejected? %>
                         <span class="label label-danger"><%= tm.status.upcase %></span>
                     <% elsif tm.newly_added? %>
