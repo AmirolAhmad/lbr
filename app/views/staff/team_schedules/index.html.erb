@@ -44,8 +44,8 @@
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= team_schedule.bil_per.upcase %></td>
-                <td>[ <%= @st.score_home_team if @st.present? %> ] <%= team_schedule.home_team.team_name %></td>
-                <td>[ <%= @st.score_away_team if @st.present? %> ] <%= team_schedule.away_team.team_name %></td>
+                <td class="<%= 'winner' if @st.present? && @st.score_home_team > @st.score_away_team %>">[ <%= @st.score_home_team if @st.present? %> ] <%= team_schedule.home_team.team_name %></td>
+                <td class="<%= 'winner' if @st.present? && @st.score_away_team > @st.score_home_team %>">[ <%= @st.score_away_team if @st.present? %> ] <%= team_schedule.away_team.team_name %></td>
                 <td><%= team_schedule.tarikh_perl.strftime("%d/%m/%Y") %></td>
                 <td><%= team_schedule.masa_perl.strftime("%I:%M %p") %></td>
                 <% if @st.present? %>
