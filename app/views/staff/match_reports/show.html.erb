@@ -109,6 +109,7 @@
         <div class="panel-footer">
           <%= link_to "Kembali", staff_zone_group_team_schedules_path(group_id:@group), class: "btn btn-default" %>
           <%= link_to "Kemaskini Keputusan Perlawanan", edit_staff_zone_group_team_schedule_match_report_path(id: @staff_match_report), :class => "btn btn-primary" %>
+          <%= link_to "Buang Keputusan Perlawanan", staff_zone_group_team_schedule_match_report_path(id: @staff_match_report), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger pull-right" %>
         </div>
       </section>
     </div>
