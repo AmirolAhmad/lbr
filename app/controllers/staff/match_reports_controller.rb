@@ -105,8 +105,6 @@ class Staff::MatchReportsController < StaffController
       current_home_gb = @siapa1.gol_bolos
       current_away_gm = @siapa2.gol_masuk
       current_away_gb = @siapa2.gol_bolos
-      perlawanan_home = @siapa1.perlawanan
-      perlawanan_away = @siapa2.perlawanan
       menang_home = @siapa1.menang
       menang_away = @siapa2.menang
       kalah_home = @siapa1.kalah
@@ -164,6 +162,56 @@ class Staff::MatchReportsController < StaffController
         @siapa2.update(gol_masuk: current_away_gm -= scgm)
         @siapa1.update(gol_bolos: current_home_gb -= scgm)
       end
+      # reset
+      if @staff_match_report.score_home_team_was > @staff_match_report.score_away_team_was
+        if staff_match_report_params[:score_home_team].to_i < staff_match_report_params[:score_away_team].to_i
+          @siapa1.update(mata: mata_home -= 3)
+          @siapa2.update(mata: mata_away += 3)
+          @siapa1.update(menang: menang_home -= 1)
+          @siapa2.update(menang: menang_away += 1)
+          @siapa1.update(kalah: kalah_home += 1)
+          @siapa2.update(kalah: kalah_away -= 1)
+        elsif staff_match_report_params[:score_home_team].to_i == staff_match_report_params[:score_away_team].to_i
+          @siapa1.update(mata: mata_home -= 2)
+          @siapa2.update(mata: mata_away += 1)
+          @siapa1.update(menang: menang_home -= 1)
+          @siapa2.update(kalah: kalah_away -= 1)
+          @siapa1.update(seri: seri_home += 1)
+          @siapa2.update(seri: seri_away += 1)
+        end
+      elsif @staff_match_report.score_home_team_was < @staff_match_report.score_away_team_was
+        if staff_match_report_params[:score_home_team].to_i > staff_match_report_params[:score_away_team].to_i
+          @siapa1.update(mata: mata_home += 3)
+          @siapa2.update(mata: mata_away -= 3)
+          @siapa1.update(menang: menang_home += 1)
+          @siapa2.update(menang: menang_away -= 1)
+          @siapa1.update(kalah: kalah_home -= 1)
+          @siapa2.update(kalah: kalah_away += 1)
+        elsif staff_match_report_params[:score_home_team].to_i == staff_match_report_params[:score_away_team].to_i
+          @siapa1.update(mata: mata_home += 1)
+          @siapa2.update(mata: mata_away -= 2)
+          @siapa1.update(kalah: kalah_home -= 1)
+          @siapa2.update(menang: menang_away -= 1)
+          @siapa1.update(seri: seri_home += 1)
+          @siapa2.update(seri: seri_away += 1)
+        end
+      elsif @staff_match_report.score_home_team_was == @staff_match_report.score_away_team_was
+        if staff_match_report_params[:score_home_team].to_i < staff_match_report_params[:score_away_team].to_i
+          @siapa1.update(mata: mata_home -= 1)
+          @siapa2.update(mata: mata_away += 2)
+          @siapa1.update(seri: seri_home -= 1)
+          @siapa2.update(seri: seri_away -= 1)
+          @siapa1.update(kalah: kalah_home += 1)
+          @siapa2.update(menang: menang_away += 1)
+        elsif staff_match_report_params[:score_home_team].to_i > staff_match_report_params[:score_away_team].to_i
+          @siapa1.update(mata: mata_home += 2)
+          @siapa2.update(mata: mata_away -= 1)
+          @siapa1.update(seri: seri_home -= 1)
+          @siapa2.update(seri: seri_away -= 1)
+          @siapa1.update(menang: menang_home += 1)
+          @siapa2.update(kalah: kalah_away += 1)
+        end
+      end
 
       #############################
       if @staff_match_report.update_attributes staff_match_report_params
@@ -171,6 +219,15 @@ class Staff::MatchReportsController < StaffController
       else
         render 'edit'
       end
+  end
+
+  def destroy
+    @staff_match_report = Staff::MatchReport.find params[:id]
+    if @staff_match_report.destroy
+      redirect_to staff_zone_group_team_schedule_match_reports_path, notice: 'Berjaya dihapuskan!'
+    else
+      render 'index'
+    end
   end
 
   private
