@@ -23,11 +23,11 @@ default: &default
 
 development:
   <<: *default
-  database: lbr_development
-  # host: lbr-production.cm8ibuexjy3j.ap-southeast-1.rds.amazonaws.com
-  # database: lbr_production
-  # username: lbr_admin
-  # password: lbr12345
+#  database: lbr_development
+  host: lbr-production.cm8ibuexjy3j.ap-southeast-1.rds.amazonaws.com
+  database: lbr_production
+  username: lbr_admin
+  password: lbr12345
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

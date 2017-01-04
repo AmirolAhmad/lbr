@@ -40,7 +40,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @staff_group_teams.each_with_index do |group_team,index| %>
+              <% @staff_group_teams.sort_by{|a| -a.gol_masuk - -a.gol_bolos}.each_with_index do |group_team,index| %>
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= group_team.team.team_name %></td>
