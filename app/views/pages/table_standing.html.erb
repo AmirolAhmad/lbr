@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--<a class="navbar-brand" href="#">-->
+        <!--<img alt="Brand" src="...">-->
+      <!--</a>-->
+      <%= link_to "Kembali ke Dashboard", dashboard_path, class: "btn btn-default navbar-btn" %>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <% @authors.keys.sort.each do |group| %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-1">Bil</th>
+        <th>Nama Pasukan</th>
+        <th class="col-md-1">P</th>
+        <th class="col-md-1">M</th>
+        <th class="col-md-1">S</th>
+        <th class="col-md-1">K</th>
+        <th class="col-md-1">GM</th>
+        <th class="col-md-1">GB</th>
+        <th class="col-md-1">MT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <h1><%= group.name %></h1>
+      <% @authors[group].sort_by{|a| [a[:gol_masuk] - a[:gol_bolos]]}.reverse.each_with_index do |group_team, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= group_team.team.team_name %></td>
+        <td><%= group_team.perlawanan %></td>
+        <td><%= group_team.menang %></td>
+        <td><%= group_team.seri %></td>
+        <td><%= group_team.kalah %></td>
+        <td><%= group_team.gol_masuk %></td>
+        <td><%= group_team.gol_bolos %></td>
+        <td><%= group_team.mata %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>

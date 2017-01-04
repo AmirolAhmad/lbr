@@ -76,4 +76,7 @@ Rails.application.routes.draw do
   resources :team_managers, except: [:show]
   resource :profile, only: [:edit, :update]
   resource :system_preference, only: [:edit, :update]
+
+  get 'pages/index'
+  get "/p/table_standing" => 'pages#table_standing'
 end
