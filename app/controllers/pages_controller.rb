@@ -15,8 +15,9 @@ class PagesController < ApplicationController
     @from = Date.parse(params[:from])
     @to = Date.parse(params[:to])
 
+
     staff_team_schedules = Staff::TeamSchedule.all
     @team_schedules = staff_team_schedules.where(
-        :created_at => @from.beginning_of_day..@to.end_of_day).group_by(&:staff_group)
+        :tarikh_perl => @from.beginning_of_day..@to.end_of_day).group_by(&:staff_group)
   end
 end
