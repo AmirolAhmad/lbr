@@ -2,7 +2,8 @@ class Staff::TeamSchedule < ActiveRecord::Base
   enum status: [:incoming, :played, :postpone, :cancel]
   belongs_to :home_team, foreign_key: 'home_team_id', class_name: 'Team'
   belongs_to :away_team, foreign_key: 'away_team_id', class_name: 'Team'
-  has_many :staff_groups, class_name: 'Staff::Group'
+  # has_many :staff_groups, class_name: 'Staff::Group'
+  belongs_to :staff_group, class_name: 'Staff::Group'
   has_many :staff_match_reports, class_name: 'Staff::MatchReport'
 
   after_initialize :set_schedule_status, :if => :new_record?

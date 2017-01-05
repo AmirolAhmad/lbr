@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Kembali ke Dashboard", dashboard_path, class: "btn btn-default navbar-btn" %>
+      <%= form_tag search_path, method: :get, class: "navbar-form pull-right" do %>
+          <div class="form-group">
+            <%= text_field_tag :from, params[:from], class: "form-control", placeholder: "from" %>
+            <%= text_field_tag :to, params[:to], class: "form-control", placeholder: "to" %>
+          </div>
+          <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <% @team_schedules.keys.sort.each do |group| %>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="col-md-1">Bil</th>
+          <th class="col-md-1">Bil. Perl</th>
+          <th>Nama Pasukan (Home)</th>
+          <th>Nama Pasukan (Away)</th>
+          <th class="col-md-1">Tarikh Perl</th>
+          <th class="col-md-1">Masa Perl</th>
+          <th class="col-md-1">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <h1><%= group.name %></h1>
+        <% @team_schedules[group].each_with_index do |team_schedule, index| %>
+            <% @st = Staff::MatchReport.find_by_staff_team_schedule_id team_schedule %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= team_schedule.bil_per.upcase %></td>
+              <td class="<%= 'winner' if @st.present? && @st.score_home_team > @st.score_away_team %><%= 'draw' if @st.present? && @st.score_home_team == @st.score_away_team %>">[ <%= @st.score_home_team if @st.present? %> ] <%= team_schedule.home_team.team_name %></td>
+              <td class="<%= 'winner' if @st.present? && @st.score_away_team > @st.score_home_team %><%= 'draw' if @st.present? && @st.score_away_team == @st.score_home_team %>">[ <%= @st.score_away_team if @st.present? %> ] <%= team_schedule.away_team.team_name %></td>
+              <td><%= team_schedule.tarikh_perl.strftime("%d/%m/%Y") %></td>
+              <td><%= team_schedule.masa_perl.strftime("%I:%M %p") %></td>
+              <% if @st.present? %>
+                  <td><span class="label label-primary">bermain</span></td>
+              <% else %>
+                  <td><span class="label label-warning">menunggu</span></td>
+              <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <% end %>
+</div>

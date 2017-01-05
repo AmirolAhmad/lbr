@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   resource :profile, only: [:edit, :update]
   resource :system_preference, only: [:edit, :update]
 
-  get 'pages/index'
   get "/p/table_standing" => 'pages#table_standing'
+  get "/p/match_schedule" => 'pages#match_schedule'
+  get "/p/search" => 'pages#search', as: :search
 end

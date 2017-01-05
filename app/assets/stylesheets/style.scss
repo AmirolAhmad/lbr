@@ -34,3 +34,15 @@ section#password-form p a {
 	border-radius: 6px;
   border: 1px solid #e1e1e1;
 }
+
+.winner {
+  color: #0088cc;
+  font-weight: 700;
+  // background-color: #bdc3c7;
+  // border: 1px #bdc3c7 solid;
+}
+
+.draw {
+  color: #e67e22;
+  font-weight: 700;
+}
