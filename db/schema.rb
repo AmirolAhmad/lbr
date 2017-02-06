@@ -16,22 +16,6 @@ ActiveRecord::Schema.define(version: 20161128190605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "game_statistics", force: :cascade do |t|
-    t.integer  "kod_id"
-    t.integer  "staff_match_report_id"
-    t.integer  "team_player_id"
-    t.integer  "team_id"
-    t.integer  "count"
-    t.integer  "minute"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "game_statistics", ["kod_id"], name: "index_game_statistics_on_kod_id", using: :btree
-  add_index "game_statistics", ["staff_match_report_id"], name: "index_game_statistics_on_staff_match_report_id", using: :btree
-  add_index "game_statistics", ["team_id"], name: "index_game_statistics_on_team_id", using: :btree
-  add_index "game_statistics", ["team_player_id"], name: "index_game_statistics_on_team_player_id", using: :btree
-
   create_table "kods", force: :cascade do |t|
     t.string   "kod_number"
     t.string   "kod_name"
@@ -247,10 +231,6 @@ ActiveRecord::Schema.define(version: 20161128190605) do
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  add_foreign_key "game_statistics", "kods"
-  add_foreign_key "game_statistics", "staff_match_reports"
-  add_foreign_key "game_statistics", "team_players"
-  add_foreign_key "game_statistics", "teams"
   add_foreign_key "profiles", "users"
   add_foreign_key "staff_game_statistics", "kods"
   add_foreign_key "staff_game_statistics", "staff_match_reports"
